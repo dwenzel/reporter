@@ -29,6 +29,8 @@ use TYPO3\CMS\Backend\Backend\ToolbarItems\SystemInformationToolbarItem;
  */
 class SystemInformationSlot
 {
+    public const DESCRIBER_CLASS_NAME = AuditorSI::NAME_SPACE . '\\' . AuditorSI::BUNDLE_DESCRIBER_CLASS;
+
     static protected $informationToAdd = [
         SI::PACKAGE_NAME_KEY => [
             SI::ICON_IDENTIFIER_KEY => SI::ICON_BUNDLE_IDENTIFIER,
@@ -41,6 +43,23 @@ class SystemInformationSlot
     ];
 
     /**
+     * @var string
+     */
+    protected $describerClass = self::DESCRIBER_CLASS_NAME;
+
+    /**
+     * SystemInformationSlot constructor.
+     * @param string $describerClassName Class name for bundle describer. Class must implement CPSIT\Auditor\DescriberInterface
+     * Pass a custom describer class name in order to replace the default.
+     */
+    public function __construct(string $describerClassName = null)
+    {
+        if (null !== $describerClassName) {
+            $this->describerClass = $describerClassName;
+        }
+    }
+
+    /**
      * Get the information to add.
      *
      * @return array An associative array of arrays with key => value pairs
@@ -51,19 +70,28 @@ class SystemInformationSlot
     }
 
     /**
+     * Get the class name for the bundle describer
+     */
+    public function getDescriberClassName()
+    {
+        return $this->describerClass;
+    }
+
+    /**
      * Slot method for signal SystemInformationToolbarItem
      * @param SystemInformationToolbarItem $item
      */
     public function systemInformationToolbarItemSlot(SystemInformationToolbarItem $item) {
 
-        $describerClass = AuditorSI::NAME_SPACE . '\\' . AuditorSI::BUNDLE_DESCRIBER_CLASS;
+        $describerClass = $this->getDescriberClassName();
         if (!class_exists($describerClass)
         || !\in_array(DescriberInterface::class, class_implements($describerClass), true)
         ) {
             return;
         }
+        $informationToAdd = $this->getInformationToAdd();
         /** @var DescriberInterface $describerClass */
-        foreach (static::$informationToAdd as $key => $value) {
+        foreach ($informationToAdd as $key => $value) {
             if (!$describerClass::hasProperty($key)) {
                 continue;
             }
