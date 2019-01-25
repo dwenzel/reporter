@@ -5,7 +5,7 @@ namespace DWenzel\Reporter\Backend\ToolbarItems;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2018 Dirk Wenzel
+ *  (c) 2019 Dirk Wenzel
  *  All rights reserved
  *
  * The GNU General Public License can be found at
@@ -39,6 +39,16 @@ class SystemInformationSlot
             SI::TITLE_KEY => 'Bundle Version',
         ]
     ];
+
+    /**
+     * Get the information to add.
+     *
+     * @return array An associative array of arrays with key => value pairs
+     */
+    public function getInformationToAdd()
+    {
+        return static::$informationToAdd;
+    }
 
     /**
      * Slot method for signal SystemInformationToolbarItem
