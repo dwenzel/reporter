@@ -1,0 +1,39 @@
+<?php
+
+namespace DWenzel\Reporter\Utility;
+
+/**
+ * This file is part of the TYPO3 CMS project.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ */
+
+/**
+ * Interface SettingsInterface
+ */
+interface SettingsInterface
+{
+
+    public const TITLE_KEY = 'title';
+    public const ICON_IDENTIFIER_KEY = 'icon-identifier';
+    public const VERSION_KEY = 'version';
+    public const PACKAGE_NAME_KEY = 'prettyName';
+    public const ICON_BUNDLE_IDENTIFIER = 'reporter-bundle';
+    public const ICON_BUNDLE_NAME_IDENTIFIER = 'reporter-bundle-name';
+
+    /**
+     * Icons to register with
+     * \TYPO3\CMS\Core\Imaging\IconProvider\FontawesomeIconProvider
+     */
+    public const FA_ICONS_TO_REGISTER = [
+        self::ICON_BUNDLE_IDENTIFIER => 'th-large',
+        self::ICON_BUNDLE_NAME_IDENTIFIER => 'tag'
+    ];
+}
