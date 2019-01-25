@@ -1,0 +1,10 @@
+2019-01-25         [RELEASE] Release of reporter 0.1.0 (Dirk Wenzel)
+2019-01-25 97eca77 [TASK] SystemInformationSlot refactored, unit tests and documentation added (Dirk Wenzel)
+2019-01-25 a09148d [CI] obsolete env variables and code climate test reporter call removed (Dirk Wenzel)
+2019-01-25 f21b29f [CI] obsolete package codeclimate/php-test-reporter removed (Dirk Wenzel)
+2019-01-25 f500e72 [CI] repo token added (Dirk Wenzel)
+2019-01-25 9a9eb93 [CI] sonar projectKey updated (Dirk Wenzel)
+2019-01-25 0caab6e [TASK] unit test for SystemInformationSlot added (Dirk Wenzel)
+2019-01-25 8bf1fdb [TASK] initial extension setup, SystemInformationSlot and SettingsInterface implemented (Dirk Wenzel)
+
+
