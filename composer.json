@@ -1,0 +1,56 @@
+{
+  "name": "dwenzel/reporter",
+  "type": "typo3-cms-extension",
+  "description": "Reporting extension for the TYPO3 CMS",
+  "keywords": [
+    "TYPO3",
+    "extension",
+    "audit",
+    "report"
+  ],
+  "license": [
+    "GPL-2.0+"
+  ],
+  "authors": [
+    {
+      "name": "Dirk Wenzel",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "typo3/cms-core": ">=8.7.0",
+    "cpsit/auditor": "~0.3"
+  },
+  "require-dev": {
+    "nimut/testing-framework": "^3.0",
+    "phpunit/phpunit": "^5.6 || ^6.0",
+    "codeclimate/php-test-reporter": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "DWenzel\\Reporter\\": "Classes"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "DWenzel\\Reporter\\Tests\\": "Tests"
+    }
+  },
+  "config": {
+    "vendor-dir": ".Build/vendor",
+    "bin-dir": ".Build/bin"
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "mkdir -p .Build/Web/typo3conf/ext/",
+      "mkdir -p .Build/log/coverage/",
+      "[ -L .Build/Web/typo3conf/ext/reporter ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/reporter"
+    ]
+  },
+  "extra": {
+    "typo3/cms": {
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "web-dir": ".Build/Web"
+    }
+  }
+}
