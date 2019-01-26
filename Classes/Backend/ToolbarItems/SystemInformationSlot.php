@@ -60,13 +60,33 @@ class SystemInformationSlot
     }
 
     /**
-     * Get the information to add.
-     *
-     * @return array An associative array of arrays with key => value pairs
+     * Slot method for signal SystemInformationToolbarItem
+     * @param SystemInformationToolbarItem $item
      */
-    public function getInformationToAdd()
+    public function systemInformationToolbarItemSlot(SystemInformationToolbarItem $item)
     {
-        return static::$informationToAdd;
+
+        $className = $this->getDescriberClassName();
+        if (!class_exists($className)
+            || !\in_array(DescriberInterface::class, class_implements($className), true)
+        ) {
+            return;
+        }
+        $additionalInformation = $this->getInformationToAdd();
+        /** @var DescriberInterface $className */
+        foreach ($additionalInformation as $key => $value) {
+            if (!$className::hasProperty($key)) {
+                continue;
+            }
+            $property = $className::getProperty($key);
+            $title = $value[SI::TITLE_KEY];
+            $iconIdentifier = $value[SI::ICON_IDENTIFIER_KEY];
+            $item->addSystemInformation(
+                $title,
+                (string)$property,
+                $iconIdentifier
+            );
+        }
     }
 
     /**
@@ -78,32 +98,13 @@ class SystemInformationSlot
     }
 
     /**
-     * Slot method for signal SystemInformationToolbarItem
-     * @param SystemInformationToolbarItem $item
+     * Get the information to add.
+     *
+     * @return array An associative array of arrays with key => value pairs
      */
-    public function systemInformationToolbarItemSlot(SystemInformationToolbarItem $item) {
-
-        $describerClass = $this->getDescriberClassName();
-        if (!class_exists($describerClass)
-        || !\in_array(DescriberInterface::class, class_implements($describerClass), true)
-        ) {
-            return;
-        }
-        $informationToAdd = $this->getInformationToAdd();
-        /** @var DescriberInterface $describerClass */
-        foreach ($informationToAdd as $key => $value) {
-            if (!$describerClass::hasProperty($key)) {
-                continue;
-            }
-            $property = $describerClass::getProperty($key);
-            $title = $value[SI::TITLE_KEY];
-            $iconIdentifier = $value[SI::ICON_IDENTIFIER_KEY];
-            $item->addSystemInformation(
-                $title,
-                (string)$property,
-                $iconIdentifier
-            );
-        }
+    public function getInformationToAdd()
+    {
+        return static::$informationToAdd;
     }
 
 }
