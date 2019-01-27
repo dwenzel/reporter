@@ -28,11 +28,6 @@ use CPSIT\Auditor\SettingsInterface as AuditorSI;
 trait PropertyTrait
 {
     /**
-     * @var array|string|int|boolean
-     */
-    protected $value;
-
-    /**
      * PropertyTrait constructor.
      * @param string $describerClass
      * @throws \Exception
