@@ -19,8 +19,12 @@ namespace DWenzel\Reporter\Backend;
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use DWenzel\Reporter\Reflection\Property\Aliases;
 use DWenzel\Reporter\Reflection\Property\Config;
+use DWenzel\Reporter\Reflection\Property\MinimumStability;
 use DWenzel\Reporter\Reflection\Property\PropertyInterface;
+use DWenzel\Reporter\Reflection\Property\References;
+use DWenzel\Reporter\Reflection\Property\StabilityFlags;
 use DWenzel\Reporter\Utility\SettingsInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -36,7 +40,11 @@ use DWenzel\Reporter\Utility\SettingsInterface as SI;
 class ComposerBundleReport implements ReportInterface
 {
     public const PROPERTIES_TO_DISPLAY = [
+        Aliases::class,
         Config::class,
+        MinimumStability::class,
+        References::class,
+        StabilityFlags::class
     ];
 
 

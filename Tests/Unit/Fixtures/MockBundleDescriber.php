@@ -36,6 +36,7 @@ final class MockBundleDescriber implements DescriberInterface
     static protected $properties = array (
         'aliases' =>
             array (
+                'foo' => 'bar'
             ),
         'minimumStability' => 'stable',
         'stabilityFlags' =>
@@ -44,6 +45,7 @@ final class MockBundleDescriber implements DescriberInterface
             ),
         'references' =>
             array (
+                'fooRef'
             ),
         'preferStable' => false,
         'config' =>
