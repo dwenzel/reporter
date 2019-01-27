@@ -23,6 +23,7 @@ use CPSIT\Auditor\DescriberInterface;
 use CPSIT\Auditor\SettingsInterface as AuditorSI;
 use DWenzel\Reporter\MissingClassException;
 use DWenzel\Reporter\MissingInterfaceException;
+
 /**
  * Trait PropertyTrait
  */
@@ -73,11 +74,6 @@ trait PropertyTrait
     public function getValue()
     {
         return $this->value;
-    }
-
-    public function getJson()
-    {
-        return $this->toJson();
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 namespace DWenzel\Reporter\Backend;
 
 /***************************************************************
@@ -19,6 +20,7 @@ namespace DWenzel\Reporter\Backend;
  ***************************************************************/
 
 use DWenzel\Reporter\Utility\SettingsInterface as SI;
+
 /**
  * Class Configurator
  */
@@ -48,7 +50,7 @@ class Configurator
                 SI::ICON_KEY => SI::ICON_PATH . $iconFileName,
                 SI::REPORT_KEY => $reportClass,
             ];
-            $registeredReports[$reportKey] =  $reportToRegister;
+            $registeredReports[$reportKey] = $reportToRegister;
         }
         $GLOBALS[SI::TYPO3_CONF_VARS_KEY][SI::SC_OPTIONS_KEY][SI::REPORTS_KEY][SI::EXTENSION_KEY] = $registeredReports;
     }

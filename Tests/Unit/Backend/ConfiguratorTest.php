@@ -72,6 +72,29 @@ class ConfiguratorTest extends UnitTestCase
     /**
      * @test
      */
+    public function registerReportsSetsArrayForExtensionKey()
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports'][SI::EXTENSION_KEY] = 'invalid String';
+        $reportKey = 'foo';
+        $reportClass = 'bar\\baz';
+        $iconFileName = 'foo.svg';
+
+        $reportsToRegister = [
+            $reportKey => [
+                SI::ICON_KEY => $iconFileName,
+                SI::CLASS_KEY => $reportClass
+            ]
+        ];
+        $this->subject->registerReports($reportsToRegister);
+
+        $this->assertTrue(
+            is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports'][SI::EXTENSION_KEY])
+        );
+    }
+
+    /**
+     * @test
+     */
     public function registerReportsDoesNothingForEmptyArgumentReports()
     {
         unset($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports'][SI::EXTENSION_KEY]);
