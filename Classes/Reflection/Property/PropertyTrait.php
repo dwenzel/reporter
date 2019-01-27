@@ -27,17 +27,6 @@ use CPSIT\Auditor\SettingsInterface as AuditorSI;
  */
 trait PropertyTrait
 {
-
-    /**
-     * @var string
-     */
-    protected static $key;
-
-    /**
-     * @var int
-     */
-    protected static $type;
-
     /**
      * @var array|string|int|boolean
      */
