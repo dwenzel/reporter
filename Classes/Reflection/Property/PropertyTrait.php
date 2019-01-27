@@ -21,7 +21,8 @@ namespace DWenzel\Reporter\Reflection\Property;
 
 use CPSIT\Auditor\DescriberInterface;
 use CPSIT\Auditor\SettingsInterface as AuditorSI;
-
+use DWenzel\Reporter\MissingClassException;
+use DWenzel\Reporter\MissingInterfaceException;
 /**
  * Trait PropertyTrait
  */
@@ -34,12 +35,14 @@ trait PropertyTrait
      */
     public function __construct($describerClass = AuditorSI::NAME_SPACE . '\\' . AuditorSI::BUNDLE_DESCRIBER_CLASS)
     {
-        if (!class_exists($describerClass)
-            || !\in_array(DescriberInterface::class, class_implements($describerClass, true), true)
-        ) {
-            $message = 'Class ' . $describerClass .  ' not found or does not implement required interface '
+        if (!class_exists($describerClass)) {
+            $message = 'Class ' . $describerClass . ' not found';
+            throw new MissingClassException($message, 1548611214);
+        }
+        if (!\in_array(DescriberInterface::class, class_implements($describerClass, true), true)) {
+            $message = 'Class ' . $describerClass . ' does not implement required interface '
                 . DescriberInterface::class;
-            throw new \Exception($message, 1548611214);
+            throw new MissingInterfaceException($message, 1548611215);
         }
 
         if ($describerClass::hasProperty(static::$key)) {
