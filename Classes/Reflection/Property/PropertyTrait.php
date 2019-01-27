@@ -59,15 +59,6 @@ trait PropertyTrait
     }
 
     /**
-     * Get the Json representation of property
-     * @return string
-     */
-    public function toJson(): string
-    {
-        return json_encode($this->value);
-    }
-
-    /**
      * Get the type
      * @return int
      */
@@ -82,5 +73,19 @@ trait PropertyTrait
     public function getValue()
     {
         return $this->value;
+    }
+
+    public function getJson()
+    {
+        return $this->toJson();
+    }
+
+    /**
+     * Get the Json representation of property
+     * @return string
+     */
+    public function toJson(): string
+    {
+        return json_encode($this->value);
     }
 }

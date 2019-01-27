@@ -34,10 +34,10 @@ class Configurator
             return;
         }
 
-        if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports'][SI::EXTENSION_KEY])) {
-            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports'][SI::EXTENSION_KEY] = [];
+        if (!is_array($GLOBALS[SI::TYPO3_CONF_VARS_KEY][SI::SC_OPTIONS_KEY][SI::REPORTS_KEY][SI::EXTENSION_KEY])) {
+            $GLOBALS[SI::TYPO3_CONF_VARS_KEY][SI::SC_OPTIONS_KEY][SI::REPORTS_KEY][SI::EXTENSION_KEY] = [];
         }
-        $registeredReports = $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports'][SI::EXTENSION_KEY];
+        $registeredReports = $GLOBALS[SI::TYPO3_CONF_VARS_KEY][SI::SC_OPTIONS_KEY][SI::REPORTS_KEY][SI::EXTENSION_KEY];
         foreach ($reports as $reportKey => $config) {
             $iconFileName = $config[SI::ICON_KEY];
             $reportClass = $config[SI::CLASS_KEY];
@@ -50,7 +50,7 @@ class Configurator
             ];
             $registeredReports[$reportKey] =  $reportToRegister;
         }
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports'][SI::EXTENSION_KEY] = $registeredReports;
+        $GLOBALS[SI::TYPO3_CONF_VARS_KEY][SI::SC_OPTIONS_KEY][SI::REPORTS_KEY][SI::EXTENSION_KEY] = $registeredReports;
     }
 
 }

@@ -68,4 +68,17 @@ class ConfiguratorTest extends UnitTestCase
             $expectedConfiguration
         );
     }
+    
+    /**
+     * @test
+     */
+    public function registerReportsDoesNothingForEmptyArgumentReports()
+    {
+        unset($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports'][SI::EXTENSION_KEY]);
+        $reports = [];
+        $this->subject->registerReports($reports);
+        $this->assertEmpty(
+            $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports'][SI::EXTENSION_KEY]
+        );
+    }
 }

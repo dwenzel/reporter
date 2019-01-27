@@ -27,6 +27,7 @@ interface SettingsInterface
     public const ICON_KEY = 'icon';
     public const TITLE_KEY = 'title';
     public const REPORT_KEY = 'report';
+    public const REPORTS_KEY = 'reports';
     public const ICON_IDENTIFIER_KEY = 'icon-identifier';
     public const VERSION_KEY = 'version';
     public const PACKAGE_NAME_KEY = 'prettyName';
@@ -34,6 +35,8 @@ interface SettingsInterface
     public const ICON_BUNDLE_IDENTIFIER = 'reporter-bundle';
     public const ICON_BUNDLE_NAME_IDENTIFIER = 'reporter-bundle-name';
     public const EXTENSION_KEY = 'reporter';
+    public const TYPO3_CONF_VARS_KEY = 'TYPO3_CONF_VARS';
+    public const SC_OPTIONS_KEY = 'SC_OPTIONS';
 
 
     public const RESOURCES_PATH = 'EXT:' . self::EXTENSION_KEY . '/Resources/';

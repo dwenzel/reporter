@@ -99,12 +99,12 @@ class ComposerBundleReport implements ReportInterface
      */
     protected function initializeStandaloneView(): StandaloneView
     {
-        /** @var StandaloneView $view */
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplatePathAndFilename(
+        /** @var StandaloneView $standaloneView */
+        $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
+        $standaloneView->setTemplatePathAndFilename(
             GeneralUtility::getFileAbsFileName(SI::TEMPLATE_ROOT_PATH . '/Backend/ComposerBundleReport.html')
         );
 
-        return $view;
+        return $standaloneView;
     }
 }
