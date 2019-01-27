@@ -1,0 +1,15 @@
+
+<f:for each="{properties}" as="property">
+    <table>
+        <thead>
+        <th>Composer Bundle Properties</th>
+        </thead>
+    <f:render section="property" arguments="{property: property}" />
+    </table>
+</f:for>
+
+<f:section name="property">
+    <tr>
+        <td><f:debug inline="true" title="{property.key}">{property.value}</f:debug></td>
+    </tr>
+</f:section>

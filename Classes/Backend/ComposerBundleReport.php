@@ -1,4 +1,5 @@
 <?php
+
 namespace DWenzel\Reporter\Backend;
 
 /***************************************************************
@@ -18,7 +19,14 @@ namespace DWenzel\Reporter\Backend;
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use DWenzel\Reporter\Reflection\Property\Config;
+use DWenzel\Reporter\Reflection\Property\PropertyInterface;
+use DWenzel\Reporter\Utility\SettingsInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Reports\ReportInterface;
+use TYPO3Fluid\Fluid\View\ViewInterface;
+use DWenzel\Reporter\Utility\SettingsInterface as SI;
 
 /**
  * Class ComposerBundleReport
@@ -27,8 +35,68 @@ use TYPO3\CMS\Reports\ReportInterface;
  */
 class ComposerBundleReport implements ReportInterface
 {
+    public const PROPERTIES_TO_DISPLAY = [
+        Config::class,
+    ];
+
+
+    /**
+     * @var StandaloneView
+     */
+    protected $view;
+
+    public function injectView(ViewInterface $view)
+    {
+        $this->view = $view;
+    }
+
+    /**
+     * @return string
+     */
     public function getReport()
     {
-        return 'ComposerBundleStatusReport';
+        $properties = $this->getProperties();
+        $this->view = $this->initializeStandaloneView();
+
+        $this->view->assignMultiple(
+            [
+                SettingsInterface::PROPERTIES_KEY => $properties
+            ]
+        );
+
+        return $this->view->render();
+    }
+
+    /**
+     * Get all properties of the bundle
+     *
+     * @return array
+     */
+    public function getProperties(): array
+    {
+        $properties = [];
+
+        foreach (static::PROPERTIES_TO_DISPLAY as $propertyClass) {
+            /** @var PropertyInterface $property */
+            $properties[] = new $propertyClass();
+        }
+
+        return $properties;
+    }
+
+    /**
+     * Initializes a StandaloneView with default settings
+     *
+     * @return StandaloneView
+     */
+    protected function initializeStandaloneView(): StandaloneView
+    {
+        /** @var StandaloneView $view */
+        $view = GeneralUtility::makeInstance(StandaloneView::class);
+        $view->setTemplatePathAndFilename(
+            GeneralUtility::getFileAbsFileName(SI::TEMPLATE_ROOT_PATH . '/Backend/ComposerBundleReport.html')
+        );
+
+        return $view;
     }
 }

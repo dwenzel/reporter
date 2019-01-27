@@ -22,7 +22,6 @@ use DWenzel\Reporter\Backend\ComposerBundleReport;
  */
 interface SettingsInterface
 {
-
     public const CLASS_KEY = 'class';
     public const DESCRIPTION_KEY = 'description';
     public const ICON_KEY = 'icon';
@@ -31,6 +30,7 @@ interface SettingsInterface
     public const ICON_IDENTIFIER_KEY = 'icon-identifier';
     public const VERSION_KEY = 'version';
     public const PACKAGE_NAME_KEY = 'prettyName';
+    public const PROPERTIES_KEY = 'properties';
     public const ICON_BUNDLE_IDENTIFIER = 'reporter-bundle';
     public const ICON_BUNDLE_NAME_IDENTIFIER = 'reporter-bundle-name';
     public const EXTENSION_KEY = 'reporter';
@@ -38,6 +38,9 @@ interface SettingsInterface
 
     public const RESOURCES_PATH = 'EXT:' . self::EXTENSION_KEY . '/Resources/';
     public const LANGUAGE_FILE_PATH = self::RESOURCES_PATH . 'Private/Language/';
+    public const LAYOUT_ROOT_PATH = self::RESOURCES_PATH . 'Private/Layouts';
+    public const PARTIAL_ROOT_PATH = self::RESOURCES_PATH . 'Private/Partials';
+    public const TEMPLATE_ROOT_PATH = self::RESOURCES_PATH . 'Private/Templates';
     public const TRANSLATION_FILE_REPORTS = 'LLL:' . self::LANGUAGE_FILE_PATH . 'locallang_reports.xlf';
     public const ICON_PATH = self::RESOURCES_PATH . 'Public/Icons/';
 
