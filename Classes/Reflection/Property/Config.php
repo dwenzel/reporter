@@ -18,15 +18,16 @@ namespace DWenzel\Reporter\Reflection\Property;
  * GNU General Public License for more details.
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-use CPSIT\Auditor\DescriberInterface;
-use CPSIT\Auditor\SettingsInterface as AuditorSI;
 
 /**
  * Class Config
  */
-class Config implements PropertyInterface
+class Config extends ArrayProperty implements PropertyInterface
 {
-    use ArrayPropertyTrait, PropertyTrait;
-
     public const KEY = 'config';
+
+    /**
+     * @var string
+     */
+    protected static $key = self::KEY;
 }

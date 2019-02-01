@@ -22,9 +22,12 @@ namespace DWenzel\Reporter\Reflection\Property;
 /**
  * Class PrettyName
  */
-class PrettyName implements PropertyInterface
+class PrettyName extends StringProperty implements PropertyInterface
 {
-    use StringPropertyTrait, PropertyTrait;
-
     public const KEY = 'prettyName';
+
+    /**
+     * @var string
+     */
+    protected static $key = self::KEY;
 }

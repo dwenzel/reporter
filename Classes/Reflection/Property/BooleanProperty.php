@@ -18,18 +18,19 @@ namespace DWenzel\Reporter\Reflection\Property;
  * GNU General Public License for more details.
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-use CPSIT\Auditor\DescriberInterface;
-use CPSIT\Auditor\SettingsInterface as AuditorSI;
 
 /**
- * Class References
+ * Class BooleanProperty
  */
-class References extends ArrayProperty implements PropertyInterface
+abstract class BooleanProperty
 {
-    public const KEY = 'references';
+    /**
+     * @var int
+     */
+    protected static $type = PropertyInterface::TYPE_BOOLEAN;
 
     /**
-     * @var string
+     * @var array
      */
-    protected static $key = self::KEY;
+    protected $value = null;
 }

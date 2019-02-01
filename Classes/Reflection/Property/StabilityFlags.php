@@ -22,9 +22,12 @@ namespace DWenzel\Reporter\Reflection\Property;
 /**
  * Class StabilityFlags
  */
-class StabilityFlags implements PropertyInterface
+class StabilityFlags extends ArrayProperty implements PropertyInterface
 {
-    use ArrayPropertyTrait, PropertyTrait;
-
     public const KEY = 'stabilityFlags';
+
+    /**
+     * @var string
+     */
+    protected static $key = self::KEY;
 }

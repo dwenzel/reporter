@@ -27,10 +27,7 @@ trait ArrayPropertyTrait
      * @var int
      */
     protected static $type = PropertyInterface::TYPE_ARRAY;
-    /**
-     * @var string
-     */
-    protected static $key = self::KEY;
+
     /**
      * @var array
      */

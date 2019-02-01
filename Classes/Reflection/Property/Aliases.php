@@ -22,9 +22,13 @@ namespace DWenzel\Reporter\Reflection\Property;
 /**
  * Class Aliases
  */
-class Aliases implements PropertyInterface
+class Aliases extends ArrayProperty implements PropertyInterface
 {
-    use ArrayPropertyTrait, PropertyTrait;
-
     public const KEY = 'aliases';
+
+    /**
+     * @var string
+     */
+    protected static $key = self::KEY;
+
 }

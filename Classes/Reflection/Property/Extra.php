@@ -24,9 +24,12 @@ use CPSIT\Auditor\SettingsInterface as AuditorSI;
 /**
  * Class Extra
  */
-class Extra implements PropertyInterface
+class Extra extends ArrayProperty implements PropertyInterface
 {
-    use ArrayPropertyTrait, PropertyTrait;
-
     public const KEY = 'extra';
+
+    /**
+     * @var string
+     */
+    protected static $key = self::KEY;
 }

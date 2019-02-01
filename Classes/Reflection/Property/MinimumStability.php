@@ -22,9 +22,12 @@ namespace DWenzel\Reporter\Reflection\Property;
 /**
  * Class MinimumStability
  */
-class MinimumStability implements PropertyInterface
+class MinimumStability extends StringProperty implements PropertyInterface
 {
-    use StringPropertyTrait, PropertyTrait;
-
     public const KEY = 'minimumStability';
+
+    /**
+     * @var string
+     */
+    protected static $key = self::KEY;
 }

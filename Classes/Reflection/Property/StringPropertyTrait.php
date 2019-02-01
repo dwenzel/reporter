@@ -23,15 +23,11 @@ namespace DWenzel\Reporter\Reflection\Property;
  */
 trait StringPropertyTrait
 {
-
     /**
      * @var int
      */
     protected static $type = PropertyInterface::TYPE_STRING;
-    /**
-     * @var string
-     */
-    protected static $key = self::KEY;
+
     /**
      * @var array
      */

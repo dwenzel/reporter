@@ -22,9 +22,12 @@ namespace DWenzel\Reporter\Reflection\Property;
 /**
  * Class Repositories
  */
-class Repositories implements PropertyInterface
+class Repositories extends ArrayProperty implements PropertyInterface
 {
-    use ArrayPropertyTrait, PropertyTrait;
-
     public const KEY = 'repositories';
+
+    /**
+     * @var string
+     */
+    protected static $key = self::KEY;
 }

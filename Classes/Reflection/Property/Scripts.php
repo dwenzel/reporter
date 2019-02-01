@@ -22,9 +22,12 @@ namespace DWenzel\Reporter\Reflection\Property;
 /**
  * Class Scripts
  */
-class Scripts implements PropertyInterface
+class Scripts extends ArrayProperty implements PropertyInterface
 {
-    use ArrayPropertyTrait, PropertyTrait;
-
     public const KEY = 'scripts';
+
+    /**
+     * @var string
+     */
+    protected static $key = self::KEY;
 }

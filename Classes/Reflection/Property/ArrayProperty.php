@@ -2,6 +2,7 @@
 
 namespace DWenzel\Reporter\Reflection\Property;
 
+
 /***************************************************************
  *  Copyright notice
  *
@@ -18,18 +19,7 @@ namespace DWenzel\Reporter\Reflection\Property;
  * GNU General Public License for more details.
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-use CPSIT\Auditor\DescriberInterface;
-use CPSIT\Auditor\SettingsInterface as AuditorSI;
-
-/**
- * Class References
- */
-class References extends ArrayProperty implements PropertyInterface
+abstract class ArrayProperty
 {
-    public const KEY = 'references';
-
-    /**
-     * @var string
-     */
-    protected static $key = self::KEY;
+    use ArrayPropertyTrait, PropertyTrait;
 }

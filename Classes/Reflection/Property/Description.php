@@ -22,9 +22,12 @@ namespace DWenzel\Reporter\Reflection\Property;
 /**
  * Class Description
  */
-class Description implements PropertyInterface
+class Description extends StringProperty implements PropertyInterface
 {
-    use StringPropertyTrait, PropertyTrait;
-
     public const KEY = 'description';
+
+    /**
+     * @var string
+     */
+    protected static $key = self::KEY;
 }
