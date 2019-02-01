@@ -26,22 +26,7 @@ use CPSIT\Auditor\SettingsInterface as AuditorSI;
  */
 class References implements PropertyInterface
 {
-    use PropertyTrait;
+    use ArrayPropertyTrait, PropertyTrait;
 
     public const KEY = 'references';
-
-    /**
-     * @var string
-     */
-    protected static $key = self::KEY;
-
-    /**
-     * @var int
-     */
-    protected static $type = PropertyInterface::TYPE_ARRAY;
-
-    /**
-     * @var array
-     */
-    protected $value = [];
 }

@@ -18,13 +18,21 @@ namespace DWenzel\Reporter\Reflection\Property;
  * GNU General Public License for more details.
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
 /**
- * Class MinimumStability
+ * Trait ArrayPropertyTrait
  */
-class MinimumStability implements PropertyInterface
+trait ArrayPropertyTrait
 {
-    use StringPropertyTrait, PropertyTrait;
-
-    public const KEY = 'minimumStability';
+    /**
+     * @var int
+     */
+    protected static $type = PropertyInterface::TYPE_ARRAY;
+    /**
+     * @var string
+     */
+    protected static $key = self::KEY;
+    /**
+     * @var array
+     */
+    protected $value = [];
 }

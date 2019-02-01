@@ -18,13 +18,15 @@ namespace DWenzel\Reporter\Reflection\Property;
  * GNU General Public License for more details.
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use CPSIT\Auditor\DescriberInterface;
+use CPSIT\Auditor\SettingsInterface as AuditorSI;
 
 /**
- * Class MinimumStability
+ * Class Extra
  */
-class MinimumStability implements PropertyInterface
+class Extra implements PropertyInterface
 {
-    use StringPropertyTrait, PropertyTrait;
+    use ArrayPropertyTrait, PropertyTrait;
 
-    public const KEY = 'minimumStability';
+    public const KEY = 'extra';
 }

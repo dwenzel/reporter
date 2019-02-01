@@ -18,30 +18,13 @@ namespace DWenzel\Reporter\Reflection\Property;
  * GNU General Public License for more details.
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-use CPSIT\Auditor\DescriberInterface;
-use CPSIT\Auditor\SettingsInterface as AuditorSI;
 
 /**
  * Class StabilityFlags
  */
 class StabilityFlags implements PropertyInterface
 {
-    use PropertyTrait;
+    use ArrayPropertyTrait, PropertyTrait;
 
     public const KEY = 'stabilityFlags';
-
-    /**
-     * @var string
-     */
-    protected static $key = self::KEY;
-
-    /**
-     * @var int
-     */
-    protected static $type = PropertyInterface::TYPE_ARRAY;
-
-    /**
-     * @var array
-     */
-    protected $value = [];
 }

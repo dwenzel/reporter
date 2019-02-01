@@ -20,11 +20,11 @@ namespace DWenzel\Reporter\Reflection\Property;
  ***************************************************************/
 
 /**
- * Class MinimumStability
+ * Class Name
  */
-class MinimumStability implements PropertyInterface
+class Name implements PropertyInterface
 {
     use StringPropertyTrait, PropertyTrait;
 
-    public const KEY = 'minimumStability';
+    public const KEY = 'name';
 }

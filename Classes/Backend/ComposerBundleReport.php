@@ -21,9 +21,15 @@ namespace DWenzel\Reporter\Backend;
 
 use DWenzel\Reporter\Reflection\Property\Aliases;
 use DWenzel\Reporter\Reflection\Property\Config;
+use DWenzel\Reporter\Reflection\Property\Description;
+use DWenzel\Reporter\Reflection\Property\Extra;
 use DWenzel\Reporter\Reflection\Property\MinimumStability;
+use DWenzel\Reporter\Reflection\Property\Name;
+use DWenzel\Reporter\Reflection\Property\PrettyName;
 use DWenzel\Reporter\Reflection\Property\PropertyInterface;
 use DWenzel\Reporter\Reflection\Property\References;
+use DWenzel\Reporter\Reflection\Property\Repositories;
+use DWenzel\Reporter\Reflection\Property\Scripts;
 use DWenzel\Reporter\Reflection\Property\StabilityFlags;
 use DWenzel\Reporter\Utility\SettingsInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -42,9 +48,15 @@ class ComposerBundleReport implements ReportInterface
     public const PROPERTIES_TO_DISPLAY = [
         Aliases::class,
         Config::class,
+        Description::class,
+        Extra::class,
         MinimumStability::class,
+        Name::class,
+        PrettyName::class,
         References::class,
-        StabilityFlags::class
+        Repositories::class,
+        Scripts::class,
+        StabilityFlags::class,
     ];
 
 
