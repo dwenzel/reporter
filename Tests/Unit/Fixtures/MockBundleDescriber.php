@@ -85,10 +85,15 @@ final class MockBundleDescriber implements DescriberInterface
         'license' => [
             0 => 'GPL-2.0+',
         ],
-        'keywords' => NULL,
+        'keywords' => ['foo', 'bar', 'keyword'],
         'description' => 'A bundle for the project foo-package.',
         'homepage' => NULL,
-        'authors' => NULL,
+        'authors' => [
+            0 => [
+                'name' => 'Anton Author',
+                'role' => 'Developer'
+            ]
+        ],
         'support' => [],
         'name' => 'dwenzel/foo-bundle',
         'prettyName' => 'dwenzel/foo-bundle',
@@ -108,14 +113,14 @@ final class MockBundleDescriber implements DescriberInterface
             ],
         ],
         'installationSource' => NULL,
-        'sourceType' => '',
-        'sourceUrl' => '',
+        'sourceType' => 'fooSourceType',
+        'sourceUrl' => 'barSourceUrl',
         'sourceReference' => 'e8eeb29003b19503e92533fdb4a3476ae92ad7a1',
         'sourceMirrors' => NULL,
-        'distType' => '',
-        'distUrl' => '',
+        'distType' => 'laLaDistType',
+        'distUrl' => 'baBaDistUrl',
         'distUrls' => [],
-        'distReference' => 'e8eeb29003b19503e92533fdb4a3476ae92ad7a1',
+        'distReference' => 'laDist-3e92533fdb4a3476ae92ad7a1',
         'distSha1Checksum' => NULL,
         'distMirrors' => NULL,
         'version' => 'dev-develop',

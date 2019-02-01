@@ -2,7 +2,7 @@
 
 namespace DWenzel\Reporter\Tests\Unit\Reflection\Property;
 
-use DWenzel\Reporter\Reflection\Property\Config;
+use DWenzel\Reporter\Reflection\Property\SourceUrl;
 use DWenzel\Reporter\Reflection\Property\PropertyInterface;
 use DWenzel\Reporter\Tests\Unit\Fixtures\MockBundleDescriber;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
@@ -24,33 +24,21 @@ use Nimut\TestingFramework\TestCase\UnitTestCase;
  * GNU General Public License for more details.
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-class ConfigTest extends UnitTestCase
+class SourceUrlTest extends UnitTestCase
 {
     /**
-     * @var Config
+     * @var SourceUrl
      */
     protected $subject;
 
-    protected $expectedValue = [
-        'platform' =>
-            [
-                'php' => '7.1',
-            ],
-        'vendor-dir' => 'app/vendor',
-        'preferred-install' =>
-            [
-                'dwenzel/foo-package' => 'source',
-                'dwenzel/reporter' => 'source',
-                '*' => 'dist',
-            ],
-    ];
+    protected $expectedValue = 'barSourceUrl';
 
     /**
      * {@inheritdoc}
      */
     public function setUp()
     {
-        $this->subject = new Config(MockBundleDescriber::class);
+        $this->subject = new SourceUrl(MockBundleDescriber::class);
     }
 
     /**
@@ -67,10 +55,10 @@ class ConfigTest extends UnitTestCase
     /**
      * @test
      */
-    public function getTypeReturnsTypeArray()
+    public function getTypeReturnsTypeString()
     {
         $this->assertSame(
-            PropertyInterface::TYPE_ARRAY,
+            PropertyInterface::TYPE_STRING,
             $this->subject->getType()
         );
     }
@@ -81,7 +69,7 @@ class ConfigTest extends UnitTestCase
     public function getKeyReturnsClassConstantKey()
     {
         $this->assertSame(
-            Config::KEY,
+            SourceUrl::KEY,
             $this->subject->getKey()
         );
     }
@@ -89,7 +77,7 @@ class ConfigTest extends UnitTestCase
     /**
      * @test
      */
-    public function getValueReturnsConfigFromMockClass()
+    public function getValueReturnsNameFromMockClass()
     {
         $this->assertSame(
             $this->expectedValue,
@@ -108,4 +96,5 @@ class ConfigTest extends UnitTestCase
             $this->subject->toJson()
         );
     }
+
 }

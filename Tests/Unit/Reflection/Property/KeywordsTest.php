@@ -2,7 +2,7 @@
 
 namespace DWenzel\Reporter\Tests\Unit\Reflection\Property;
 
-use DWenzel\Reporter\Reflection\Property\Config;
+use DWenzel\Reporter\Reflection\Property\Keywords;
 use DWenzel\Reporter\Reflection\Property\PropertyInterface;
 use DWenzel\Reporter\Tests\Unit\Fixtures\MockBundleDescriber;
 use Nimut\TestingFramework\TestCase\UnitTestCase;
@@ -24,33 +24,21 @@ use Nimut\TestingFramework\TestCase\UnitTestCase;
  * GNU General Public License for more details.
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-class ConfigTest extends UnitTestCase
+class KeywordsTest extends UnitTestCase
 {
     /**
-     * @var Config
+     * @var Keywords
      */
     protected $subject;
 
-    protected $expectedValue = [
-        'platform' =>
-            [
-                'php' => '7.1',
-            ],
-        'vendor-dir' => 'app/vendor',
-        'preferred-install' =>
-            [
-                'dwenzel/foo-package' => 'source',
-                'dwenzel/reporter' => 'source',
-                '*' => 'dist',
-            ],
-    ];
+    protected $expectedValue = ['foo', 'bar', 'keyword'];
 
     /**
      * {@inheritdoc}
      */
     public function setUp()
     {
-        $this->subject = new Config(MockBundleDescriber::class);
+        $this->subject = new Keywords(MockBundleDescriber::class);
     }
 
     /**
@@ -81,7 +69,7 @@ class ConfigTest extends UnitTestCase
     public function getKeyReturnsClassConstantKey()
     {
         $this->assertSame(
-            Config::KEY,
+            Keywords::KEY,
             $this->subject->getKey()
         );
     }
@@ -89,7 +77,7 @@ class ConfigTest extends UnitTestCase
     /**
      * @test
      */
-    public function getValueReturnsConfigFromMockClass()
+    public function getValueReturnsKeywordsFromMockClass()
     {
         $this->assertSame(
             $this->expectedValue,
