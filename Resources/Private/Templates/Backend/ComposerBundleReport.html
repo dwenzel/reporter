@@ -1,0 +1,19 @@
+<table>
+    <thead>
+    <th>Composer Bundle Properties</th>
+    </thead>
+
+    <f:for each="{properties}" as="property">
+        <f:if condition="{property.value}">
+                <f:render section="property" arguments="{property: property}"/>
+        </f:if>
+    </f:for>
+</table>
+
+<f:section name="property">
+    <tr>
+        <td>
+            <f:debug inline="true" title="{property.key}">{property.value}</f:debug>
+        </td>
+    </tr>
+</f:section>
