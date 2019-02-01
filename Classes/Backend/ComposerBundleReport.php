@@ -19,6 +19,7 @@ namespace DWenzel\Reporter\Backend;
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use DWenzel\Reporter\CallStaticTrait;
 use DWenzel\Reporter\Reflection\Property\Aliases;
 use DWenzel\Reporter\Reflection\Property\Config;
 use DWenzel\Reporter\Reflection\Property\Description;
@@ -45,6 +46,8 @@ use DWenzel\Reporter\Utility\SettingsInterface as SI;
  */
 class ComposerBundleReport implements ReportInterface
 {
+    use CallStaticTrait;
+
     public const PROPERTIES_TO_DISPLAY = [
         Aliases::class,
         Config::class,
@@ -112,7 +115,7 @@ class ComposerBundleReport implements ReportInterface
     protected function initializeStandaloneView(): StandaloneView
     {
         /** @var StandaloneView $standaloneView */
-        $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
+        $standaloneView = $this->callStatic(GeneralUtility::class, 'makeInstance', StandaloneView::class);
         $standaloneView->setTemplatePathAndFilename(
             GeneralUtility::getFileAbsFileName(SI::TEMPLATE_ROOT_PATH . '/Backend/ComposerBundleReport.html')
         );
