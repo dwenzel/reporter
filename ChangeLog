@@ -1,3 +1,8 @@
+2019-04-05         [RELEASE] Release of reporter 0.3.0 (Dirk Wenzel)
+2019-04-05 8d2e51d [TASK] ComposerPackagesReport implemented (Dirk Wenzel)
+2019-04-04 0f20bbb [TASK] require cpsit/auditor:~0.4 (Dirk Wenzel)
+2019-02-01 f1c38e0 [TASK] documentation updated (Dirk Wenzel)
+
 2019-02-01         [RELEASE] Release of reporter 0.2.0 (Dirk Wenzel)
 2019-02-01 ea02a59 [TASK] Reflection classes added (Dirk Wenzel)
 2019-02-01 dc94e58 [CI] exclude some files from static analysis - obsolete configuration file for sensiolabs removed (Dirk Wenzel)
