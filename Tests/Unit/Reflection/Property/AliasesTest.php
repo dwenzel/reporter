@@ -33,6 +33,7 @@ class AliasesTest extends UnitTestCase
 
     /**
      * {@inheritdoc}
+     * @throws \Exception
      */
     public function setUp()
     {

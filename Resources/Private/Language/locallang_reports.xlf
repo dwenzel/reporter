@@ -9,6 +9,12 @@
 			<trans-unit id="composerBundle.description">
 				<source>Get a status report about your composer root package.</source>
 			</trans-unit>
+			<trans-unit id="composerPackages.title">
+				<source>Composer Packages Report</source>
+			</trans-unit>
+			<trans-unit id="composerPackages.description">
+				<source>Get a status report about installed composer packages.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
