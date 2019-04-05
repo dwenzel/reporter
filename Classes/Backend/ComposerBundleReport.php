@@ -59,7 +59,7 @@ use DWenzel\Reporter\Utility\SettingsInterface as SI;
  */
 class ComposerBundleReport implements ReportInterface
 {
-    use CallStaticTrait;
+    use CallStaticTrait, ViewTrait;
 
     public const PROPERTIES_TO_DISPLAY = [
         Aliases::class,
@@ -88,16 +88,8 @@ class ComposerBundleReport implements ReportInterface
         Version::class
     ];
 
+    public const TEMPLATE_PATH = '/Backend/ComposerBundleReport.html';
 
-    /**
-     * @var StandaloneView
-     */
-    protected $view;
-
-    public function injectView(ViewInterface $view)
-    {
-        $this->view = $view;
-    }
 
     /**
      * @return string
@@ -133,19 +125,5 @@ class ComposerBundleReport implements ReportInterface
         return $properties;
     }
 
-    /**
-     * Initializes a StandaloneView with default settings
-     *
-     * @return StandaloneView
-     */
-    protected function initializeStandaloneView(): StandaloneView
-    {
-        /** @var StandaloneView $standaloneView */
-        $standaloneView = $this->callStatic(GeneralUtility::class, 'makeInstance', StandaloneView::class);
-        $standaloneView->setTemplatePathAndFilename(
-            GeneralUtility::getFileAbsFileName(SI::TEMPLATE_ROOT_PATH . '/Backend/ComposerBundleReport.html')
-        );
 
-        return $standaloneView;
-    }
 }

@@ -16,6 +16,7 @@ namespace DWenzel\Reporter\Utility;
  */
 
 use DWenzel\Reporter\Backend\ComposerBundleReport;
+use DWenzel\Reporter\Backend\ComposerPackagesReport;
 
 /**
  * Interface SettingsInterface
@@ -31,6 +32,7 @@ interface SettingsInterface
     public const ICON_IDENTIFIER_KEY = 'icon-identifier';
     public const VERSION_KEY = 'version';
     public const PACKAGE_NAME_KEY = 'prettyName';
+    public const PACKAGES_KEY = 'packages';
     public const PROPERTIES_KEY = 'properties';
     public const ICON_BUNDLE_IDENTIFIER = 'reporter-bundle';
     public const ICON_BUNDLE_NAME_IDENTIFIER = 'reporter-bundle-name';
@@ -60,6 +62,10 @@ interface SettingsInterface
         'composerBundle' => [
             self::ICON_KEY => 'th-large.svg',
             self::CLASS_KEY => ComposerBundleReport::class
+        ],
+        'composerPackages' => [
+            self::ICON_KEY => 'th-large.svg',
+            self::CLASS_KEY => ComposerPackagesReport::class
         ]
     ];
 }
