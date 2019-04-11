@@ -96,7 +96,7 @@ class ExtraTest extends UnitTestCase
     /**
      * @test
      */
-    public function toJsonReturnsJsonRepresentationFromMockClass()
+    public function getJsonReturnsJsonRepresentationFromMockClass()
     {
         $extra = [
             'typo3/cms' => [
@@ -111,7 +111,7 @@ class ExtraTest extends UnitTestCase
         $expectedJson = json_encode($extra);
         $this->assertSame(
             $expectedJson,
-            $this->subject->toJson()
+            $this->subject->getJson()
         );
     }
 

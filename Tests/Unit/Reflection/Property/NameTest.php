@@ -88,14 +88,14 @@ class NameTest extends UnitTestCase
     /**
      * @test
      */
-    public function toJsonReturnsJsonRepresentationFromMockClass()
+    public function getJsonReturnsJsonRepresentationFromMockClass()
     {
         $name = 'dwenzel/foo-bundle';
 
         $expectedJson = json_encode($name);
         $this->assertSame(
             $expectedJson,
-            $this->subject->toJson()
+            $this->subject->getJson()
         );
     }
 

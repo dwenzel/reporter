@@ -88,14 +88,14 @@ class PrettyNameTest extends UnitTestCase
     /**
      * @test
      */
-    public function toJsonReturnsJsonRepresentationFromMockClass()
+    public function getJsonReturnsJsonRepresentationFromMockClass()
     {
         $prettyName = 'dwenzel/foo-bundle';
 
         $expectedJson = json_encode($prettyName);
         $this->assertSame(
             $expectedJson,
-            $this->subject->toJson()
+            $this->subject->getJson()
         );
     }
 

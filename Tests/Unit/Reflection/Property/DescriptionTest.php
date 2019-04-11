@@ -88,14 +88,14 @@ class DescriptionTest extends UnitTestCase
     /**
      * @test
      */
-    public function toJsonReturnsJsonRepresentationFromMockClass()
+    public function getJsonReturnsJsonRepresentationFromMockClass()
     {
         $description = 'A bundle for the project foo-package.';
 
         $expectedJson = json_encode($description);
         $this->assertSame(
             $expectedJson,
-            $this->subject->toJson()
+            $this->subject->getJson()
         );
     }
 

@@ -1,19 +1,24 @@
+<f:be.pageRenderer
+        includeCssFiles="{0: '{f:uri.resource(path: \'Libraries/jquery.json-viewer/json-viewer/jquery.json-viewer.css\', extensionName: \'reporter\')}'}"
+        includeJsFiles="{0: '{f:uri.resource(path: \'Libraries/jquery.json-viewer/json-viewer/jquery.json-viewer.js\', extensionName: \'reporter\')}'}"/>
 <table>
     <thead>
     <th>Composer Bundle Properties</th>
     </thead>
-
+    <tr><td>Path: {f:uri.resource(path: 'Icons/th-large.svg', extensionName: 'reporter')}</td></tr>
+    <tr><td>Path: {f:uri.resource(path: 'Libraries/jquery.json-viewer/json-viewer/jquery.json-viewer.js', extensionName: 'reporter')}</td></tr>
     <f:for each="{properties}" as="property">
         <f:if condition="{property.value}">
-                <f:render section="property" arguments="{property: property}"/>
+            <f:render section="property" arguments="{property: property}"/>
         </f:if>
     </f:for>
 </table>
 
 <f:section name="property">
     <tr>
-        <td>
-            <f:debug inline="true" title="{property.key}">{property.value}</f:debug>
+        <td><h3>{property.key}</h3></td>
+        <td id="tx-reporter-{property.key}">
+            {property.json}
         </td>
     </tr>
 </f:section>

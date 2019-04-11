@@ -106,7 +106,7 @@ class ScriptsTest extends UnitTestCase
     /**
      * @test
      */
-    public function toJsonReturnsJsonRepresentationFromMockClass()
+    public function getJsonReturnsJsonRepresentationFromMockClass()
     {
         $scripts = [
             'package-states' => [
@@ -127,7 +127,7 @@ class ScriptsTest extends UnitTestCase
         $expectedJson = json_encode($scripts);
         $this->assertSame(
             $expectedJson,
-            $this->subject->toJson()
+            $this->subject->getJson()
         );
     }
 

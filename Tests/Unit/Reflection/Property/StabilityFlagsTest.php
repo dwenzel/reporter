@@ -90,7 +90,7 @@ class StabilityFlagsTest extends UnitTestCase
     /**
      * @test
      */
-    public function toJsonReturnsJsonRepresentationFromMockClass()
+    public function getJsonReturnsJsonRepresentationFromMockClass()
     {
         $stabilityFlags = [
             'roave/security-advisories' => 20,
@@ -99,7 +99,7 @@ class StabilityFlagsTest extends UnitTestCase
         $expectedJson = json_encode($stabilityFlags);
         $this->assertSame(
             $expectedJson,
-            $this->subject->toJson()
+            $this->subject->getJson()
         );
     }
 

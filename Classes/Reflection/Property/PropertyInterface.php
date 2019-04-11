@@ -25,7 +25,7 @@ interface PropertyInterface
     /**
      * @return string
      */
-    public function toJson():string;
+    public function getJson():string;
 
     /**
      * Property key in DescriberClass

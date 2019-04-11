@@ -91,7 +91,7 @@ class AliasesTest extends UnitTestCase
     /**
      * @test
      */
-    public function toJsonReturnsJsonRepresentationFromMockClass()
+    public function getJsonReturnsJsonRepresentationFromMockClass()
     {
         $aliases = [
             'foo' => 'bar'
@@ -100,7 +100,7 @@ class AliasesTest extends UnitTestCase
         $expectedJson = json_encode($aliases);
         $this->assertSame(
             $expectedJson,
-            $this->subject->toJson()
+            $this->subject->getJson()
         );
     }
 

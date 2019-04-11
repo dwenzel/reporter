@@ -80,7 +80,7 @@ trait PropertyTrait
      * Get the Json representation of property
      * @return string
      */
-    public function toJson(): string
+    public function getJson(): string
     {
         return json_encode($this->value);
     }
