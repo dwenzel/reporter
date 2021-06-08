@@ -17,10 +17,4 @@
  ***************************************************************/
 
 return [
-    'frontend' => [
-        'application-report-api' => [
-            'target' => \DWenzel\Reporter\Middleware\ApplicationReportApi::class,
-            'before' => ['typo3/cms-frontend/eid']
-        ]
-    ]
 ];
