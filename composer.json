@@ -17,14 +17,22 @@
       "role": "Developer"
     }
   ],
+  "repositories": {
+    "reporter-api": {
+      "type": "vcs",
+      "url": "git@github.com:dwenzel/reporter-api.git"
+    }
+  },
   "require": {
     "typo3/cms-core": ">=8.7.0",
     "typo3/cms-reports": ">=8.7",
-    "cpsit/auditor": "~0.4"
+    "cpsit/auditor": "~0.4",
+    "dwenzel/reporter-api": "^1.0"
   },
   "require-dev": {
     "nimut/testing-framework": "^3.0",
-    "phpunit/phpunit": "^5.6 || ^6.0"
+    "phpunit/phpunit": "^5.6 || ^6.0",
+    "dwenzel/reporter-api": "dev-develop as 1.0.0"
   },
   "autoload": {
     "psr-4": {
