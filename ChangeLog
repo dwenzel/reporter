@@ -1,3 +1,8 @@
+2021-08-11         [RELEASE] Release of reporter 0.4.0 (Dirk Wenzel)
+2021-06-08 09f3efd [BUGFIX] registration of API middleware removed (Dirk Wenzel)
+2021-05-31 e0ba27b [TASK] Add extension key configuration to composer.json (Elias Häußler)
+2019-11-05 10eccd8 [WIP] Middleware/ApplicationReportApi implemented (Dirk Wenzel)
+
 2019-04-05         [RELEASE] Release of reporter 0.3.0 (Dirk Wenzel)
 2019-04-05 8d2e51d [TASK] ComposerPackagesReport implemented (Dirk Wenzel)
 2019-04-04 0f20bbb [TASK] require cpsit/auditor:~0.4 (Dirk Wenzel)
