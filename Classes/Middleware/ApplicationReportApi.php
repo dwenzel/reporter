@@ -2,16 +2,14 @@
 
 namespace DWenzel\Reporter\Middleware;
 
-use DWenzel\Reporter\Utility\SettingsInterface;
 use DWenzel\ReporterApi\Api;
+use Fr\ApiToken\Context\AuthenticatedAspect;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /***************************************************************
  *  Copyright notice
@@ -32,10 +30,31 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  * Class ApplicationReportApi
- * Provides an application report api
+ * Handles request for an application report API
+ * The request MUST be authenticated beforehand.
+ * This middleware only checks, if our API can handle the request and if the
+ * @see AuthenticatedAspect  is set in the
+ * @see Context
  */
 class ApplicationReportApi implements MiddlewareInterface
 {
+
+    protected Api $api;
+    protected Context $context;
+
+    public function __construct(Api $api = null, Context $context = null)
+    {
+
+        $this->api = $api ?? $this->getApiInstance();
+        $this->context = $context ?? GeneralUtility::makeInstance(Context::class);
+    }
+
+    protected function getApiInstance(): Api
+    {
+        // not much to do yet
+        return new Api();
+    }
+
     /**
      * Process an incoming server request.
      *
@@ -45,38 +64,14 @@ class ApplicationReportApi implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $apiInstance = $this->getApiInstance($request, $handler);
-        return $apiInstance->process($request, $handler);
-    }
+        if (
+            !$this->api->canHandle($request)
+            || !$this->context->hasAspect(AuthenticatedAspect::ASPECT_NAME)
 
-    protected function getApiInstance(ServerRequestInterface $request, RequestHandlerInterface $handler)
-    {
-        /** @var ConfigurationManagerInterface $configurationManager */
-        $configurationManager = GeneralUtility::makeInstance(ObjectManager::class)->get(ConfigurationManager::class);
-        $extensionSettings = $configurationManager->getConfiguration(
-            ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS,
-            SettingsInterface::EXTENSION_KEY
-        );
+        ) {
+            return $handler->handle($request);
+        }
 
-        // read  api key
-        $apiKey = 'foo';
-        // read secret
-        $secret = 'bar';
-        $site = $request->getAttribute('siteUrl');
-        $attributes = $request->getAttributes();
-
-        // read lang
-        $lang = 'en';
-        // read config
-        $config = [];
-
-        return new Api(
-            $apiKey,
-            $secret,
-            $handler,
-            null,
-            $lang,
-            $config
-        );
+        return $this->api->process($request, $handler);
     }
 }

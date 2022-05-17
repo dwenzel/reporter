@@ -1,0 +1,11 @@
+routeEnhancers:
+  Api:
+    type: ReporterApiEnhancer
+    limitToPath: '/api/reporter/v{version}'
+    namespace: 'rest_api'
+    routes:
+      - { routePath: '/application/report', method: 'GET', default: true }
+    defaults:
+      version: '1'
+    requirements:
+      version: '\d+'
