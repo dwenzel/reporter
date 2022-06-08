@@ -64,14 +64,30 @@ class ApplicationReportApi implements MiddlewareInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if (
-            !$this->api->canHandle($request)
-            || !$this->context->hasAspect(AuthenticatedAspect::ASPECT_NAME)
-
-        ) {
+        if (!$this->canHandle($request)) {
             return $handler->handle($request);
         }
 
         return $this->api->process($request, $handler);
+    }
+
+    /**
+     * Tells if this can handle a request
+     *
+     * @param ServerRequestInterface $request
+     * @return bool
+     * @throws \TYPO3\CMS\Core\Context\Exception\AspectNotFoundException
+     * @throws \TYPO3\CMS\Core\Context\Exception\AspectPropertyNotFoundException
+     */
+    protected function canHandle(ServerRequestInterface $request): bool
+    {
+        if (!($this->api->canHandle($request) && $this->context->hasAspect(AuthenticatedAspect::ASPECT_NAME))
+        ){
+            return false;
+        };
+
+        $authenticatedAspect = $this->context->getAspect(AuthenticatedAspect::ASPECT_NAME);
+
+        return (bool) $authenticatedAspect->get(AuthenticatedAspect::AUTHENTICATED);
     }
 }
