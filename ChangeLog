@@ -1,3 +1,9 @@
+2022-10-12         [RELEASE] Release of reporter 0.4.1 (Dirk Wenzel)
+2022-10-12 2f25b37 [BUGFIX] prevent error on array access due to invalid key with PHP 8.* (Dirk Wenzel)
+2022-10-11 7654fc3 [BUGFIX] fixed error in mock class for unit tests caused by invalid property type and changes in dependency cpsit/auditor (Dirk Wenzel)
+2022-06-08 bb5b4d7 [BUGFIX] fixed error in Middleware/ApplicationReportApi where a request was handled when the AuthenticatedAspect::authenticated was false (Dirk Wenzel)
+2022-05-17 26e5678 [TASK] authentication for API request implemented (Dirk Wenzel)
+
 2021-08-11         [RELEASE] Release of reporter 0.4.0 (Dirk Wenzel)
 2021-06-08 09f3efd [BUGFIX] registration of API middleware removed (Dirk Wenzel)
 2021-05-31 e0ba27b [TASK] Add extension key configuration to composer.json (Elias Häußler)
