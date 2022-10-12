@@ -36,6 +36,9 @@ class Configurator
             return;
         }
 
+        if(!isset($GLOBALS[SI::TYPO3_CONF_VARS_KEY][SI::SC_OPTIONS_KEY][SI::REPORTS_KEY][SI::EXTENSION_KEY])) {
+            $GLOBALS[SI::TYPO3_CONF_VARS_KEY][SI::SC_OPTIONS_KEY][SI::REPORTS_KEY][SI::EXTENSION_KEY] = [];
+        }
         if (!is_array($GLOBALS[SI::TYPO3_CONF_VARS_KEY][SI::SC_OPTIONS_KEY][SI::REPORTS_KEY][SI::EXTENSION_KEY])) {
             $GLOBALS[SI::TYPO3_CONF_VARS_KEY][SI::SC_OPTIONS_KEY][SI::REPORTS_KEY][SI::EXTENSION_KEY] = [];
         }

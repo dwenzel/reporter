@@ -20,7 +20,7 @@ namespace DWenzel\Reporter\Tests\Unit\Fixtures;
  ***************************************************************/
 
 use CPSIT\Auditor\DescriberInterface;
-use CPSIT\Auditor\DescriberTrait;
+use CPSIT\Auditor\PropertiesTrait;
 
 /**
  * Mock for tests of bundle describer
@@ -31,121 +31,9 @@ use CPSIT\Auditor\DescriberTrait;
  */
 final class MockBundleDescriber implements DescriberInterface
 {
-    use DescriberTrait;
+    use PropertiesTrait;
 
-    static protected $properties = [
-        'aliases' => [
-            'foo' => 'bar'
-        ],
-        'minimumStability' => 'stable',
-        'stabilityFlags' => [
-            'roave/security-advisories' => 20,
-        ],
-        'references' => [
-            'fooRef'
-        ],
-        'preferStable' => false,
-        'config' => [
-            'platform' => [
-                'php' => '7.1',
-            ],
-            'vendor-dir' => 'app/vendor',
-            'preferred-install' => [
-                'dwenzel/foo-package' => 'source',
-                'dwenzel/reporter' => 'source',
-                '*' => 'dist',
-            ],
-        ],
-        'scripts' => [
-            'package-states' => [
-                0 => 'php app/vendor/bin/typo3cms install:generatepackagestates',
-            ],
-            'folder-structure' => [
-                0 => 'php app/vendor/bin/typo3cms install:fixfolderstructure',
-            ],
-            'pre-deploy' => [
-                0 => '# Scripts here will be executed after composer install',
-            ],
-            'post-autoload-dump' => [
-                0 => '@package-states',
-                1 => '@folder-structure',
-            ],
-        ],
-        'repositories' => [
-            1 => [
-                'type' => 'composer',
-                'url' => 'https://composer.typo3.org/',
-            ],
-            'packagist.org' => [
-                'type' => 'composer',
-                'url' => 'https?://repo.packagist.org',
-                'allow_ssl_downgrade' => true,
-            ],
-        ],
-        'license' => [
-            0 => 'GPL-2.0+',
-        ],
-        'keywords' => ['foo', 'bar', 'keyword'],
-        'description' => 'A bundle for the project foo-package.',
-        'homepage' => NULL,
-        'authors' => [
-            0 => [
-                'name' => 'Anton Author',
-                'role' => 'Developer'
-            ]
-        ],
-        'support' => [],
-        'name' => 'dwenzel/foo-bundle',
-        'prettyName' => 'dwenzel/foo-bundle',
-        'names' => [
-            0 => 'dwenzel/foo-bundle',
-        ],
-        'id' => -1,
-        'type' => 'library',
-        'targetDir' => NULL,
-        'extra' => [
-            'typo3/cms' => [
-                'cms-package-dir' => '{$vendor-dir}/typo3/cms',
-                'web-dir' => 'app/web',
-            ],
-            'helhum/typo3-console' => [
-                'install-extension-dummy' => false,
-            ],
-        ],
-        'installationSource' => NULL,
-        'sourceType' => 'fooSourceType',
-        'sourceUrl' => 'barSourceUrl',
-        'sourceReference' => 'e8eeb29003b19503e92533fdb4a3476ae92ad7a1',
-        'sourceMirrors' => NULL,
-        'distType' => 'laLaDistType',
-        'distUrl' => 'baBaDistUrl',
-        'distUrls' => [],
-        'distReference' => 'laDist-3e92533fdb4a3476ae92ad7a1',
-        'distSha1Checksum' => NULL,
-        'distMirrors' => NULL,
-        'version' => 'dev-develop',
-        'fullPrettyVersion' => 'dev-develop',
-        'releaseDate' => NULL,
-        'conflicts' => [],
-        'provides' => [],
-        'replaces' => [],
-        'suggests' => [],
-        'autoload' => [
-            'files' => [
-                0 => '/Users/dw/projekt/fgp-typo3/app/vendor/helhum/console-autoload-include.php',
-                1 => '/Users/dw/projekt/fgp-typo3/app/vendor/typo3/autoload-include.php',
-            ],
-        ],
-        'devAutoload' => [
-            'psr-4' => [
-                'DWenzel\\FgpTemplate\\' => 'app/web/typo3conf/ext/fgp_template/Classes',
-            ],
-        ],
-        'includePaths' => [],
-        'repository' => NULL,
-        'uniqueName' => 'dwenzel/foo-bundle-dev-develop',
-        'notificationUrl' => NULL,
-    ];
+    static protected $properties = 'a:45:{s:7:"aliases";a:1:{s:3:"foo";s:3:"bar";}s:16:"minimumStability";s:6:"stable";s:14:"stabilityFlags";a:1:{s:25:"roave/security-advisories";i:20;}s:10:"references";a:1:{i:0;s:6:"fooRef";}s:12:"preferStable";b:0;s:6:"config";a:3:{s:8:"platform";a:1:{s:3:"php";s:3:"7.1";}s:10:"vendor-dir";s:10:"app/vendor";s:17:"preferred-install";a:3:{s:19:"dwenzel/foo-package";s:6:"source";s:16:"dwenzel/reporter";s:6:"source";s:1:"*";s:4:"dist";}}s:7:"scripts";a:4:{s:14:"package-states";a:1:{i:0;s:57:"php app/vendor/bin/typo3cms install:generatepackagestates";}s:16:"folder-structure";a:1:{i:0;s:54:"php app/vendor/bin/typo3cms install:fixfolderstructure";}s:10:"pre-deploy";a:1:{i:0;s:54:"# Scripts here will be executed after composer install";}s:18:"post-autoload-dump";a:2:{i:0;s:15:"@package-states";i:1;s:17:"@folder-structure";}}s:12:"repositories";a:2:{i:1;a:2:{s:4:"type";s:8:"composer";s:3:"url";s:27:"https://composer.typo3.org/";}s:13:"packagist.org";a:3:{s:4:"type";s:8:"composer";s:3:"url";s:27:"https?://repo.packagist.org";s:19:"allow_ssl_downgrade";b:1;}}s:7:"license";a:1:{i:0;s:8:"GPL-2.0+";}s:8:"keywords";a:3:{i:0;s:3:"foo";i:1;s:3:"bar";i:2;s:7:"keyword";}s:11:"description";s:37:"A bundle for the project foo-package.";s:8:"homepage";N;s:7:"authors";a:1:{i:0;a:2:{s:4:"name";s:12:"Anton Author";s:4:"role";s:9:"Developer";}}s:7:"support";a:0:{}s:4:"name";s:18:"dwenzel/foo-bundle";s:10:"prettyName";s:18:"dwenzel/foo-bundle";s:5:"names";a:1:{i:0;s:18:"dwenzel/foo-bundle";}s:2:"id";i:-1;s:4:"type";s:7:"library";s:9:"targetDir";N;s:5:"extra";a:2:{s:9:"typo3/cms";a:2:{s:15:"cms-package-dir";s:23:"{$vendor-dir}/typo3/cms";s:7:"web-dir";s:7:"app/web";}s:20:"helhum/typo3-console";a:1:{s:23:"install-extension-dummy";b:0;}}s:18:"installationSource";N;s:10:"sourceType";s:13:"fooSourceType";s:9:"sourceUrl";s:12:"barSourceUrl";s:15:"sourceReference";s:40:"e8eeb29003b19503e92533fdb4a3476ae92ad7a1";s:13:"sourceMirrors";N;s:8:"distType";s:12:"laLaDistType";s:7:"distUrl";s:11:"baBaDistUrl";s:8:"distUrls";a:0:{}s:13:"distReference";s:32:"laDist-3e92533fdb4a3476ae92ad7a1";s:16:"distSha1Checksum";N;s:11:"distMirrors";N;s:7:"version";s:11:"dev-develop";s:17:"fullPrettyVersion";s:11:"dev-develop";s:11:"releaseDate";N;s:9:"conflicts";a:0:{}s:8:"provides";a:0:{}s:8:"replaces";a:0:{}s:8:"suggests";a:0:{}s:8:"autoload";a:1:{s:5:"files";a:2:{i:0;s:74:"/Users/dw/projekt/fgp-typo3/app/vendor/helhum/console-autoload-include.php";i:1;s:65:"/Users/dw/projekt/fgp-typo3/app/vendor/typo3/autoload-include.php";}}s:11:"devAutoload";a:1:{s:5:"psr-4";a:1:{s:20:"DWenzel\FgpTemplate\";s:42:"app/web/typo3conf/ext/fgp_template/Classes";}}s:12:"includePaths";a:0:{}s:10:"repository";N;s:10:"uniqueName";s:30:"dwenzel/foo-bundle-dev-develop";s:15:"notificationUrl";N;}';
 
     private function __construct()
     {

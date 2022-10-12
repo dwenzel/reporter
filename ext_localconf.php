@@ -1,4 +1,6 @@
 <?php
+
+
 if (!defined('TYPO3_MODE')) {
     die ('Access denied');
 }
@@ -22,4 +24,6 @@ $signalSlotDispatcher->connect(
     \DWenzel\Reporter\Backend\ToolbarItems\SystemInformationSlot::class,
     'systemInformationToolbarItemSlot'
 );
+
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['enhancers'][\DWenzel\Reporter\Routing\Enhancer\ReporterApiEnhancer::REGISTRATION_KEY] = \DWenzel\Reporter\Routing\Enhancer\ReporterApiEnhancer::class;
 

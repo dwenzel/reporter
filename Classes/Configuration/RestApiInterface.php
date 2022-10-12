@@ -1,8 +1,11 @@
 <?php
+
+namespace DWenzel\Reporter\Configuration;
+
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2019 Dirk Wenzel <wenzel@cps-it.de>
+ *  (c) 2022 Dirk Wenzel <wenzel@cps-it.de>
  *  All rights reserved
  *
  * The GNU General Public License can be found at
@@ -15,12 +18,12 @@
  * GNU General Public License for more details.
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+interface RestApiInterface
+{
+    public const KEY_METHOD = 'method';
+    public const KEY_ROUTES = 'routes';
+    public const KEY_ROUTE_PATH = 'routePath';
+    public const ROUTE_OPTION_DEFAULT = 'default';
+    public const METHOD_GET = 'GET';
 
-return [
-    'frontend' => [
-        'dwenzel/reporter/application-report-api' => [
-            'target' => \DWenzel\Reporter\Middleware\ApplicationReportApi::class,
-            'after' => ['fr/api-token/api-key-authenticator']
-        ]
-    ]
-];
+}
