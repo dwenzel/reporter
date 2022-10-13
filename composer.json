@@ -28,7 +28,7 @@
     "typo3/cms-reports": ">=8.7",
     "cpsit/auditor": "~0.4",
     "dwenzel/reporter-api": "~0.1",
-    "cpsit/api-token": "~0.7"
+    "cpsit/api-token": "~0.8"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
