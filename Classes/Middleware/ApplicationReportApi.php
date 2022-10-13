@@ -3,7 +3,7 @@
 namespace DWenzel\Reporter\Middleware;
 
 use DWenzel\ReporterApi\Api;
-use Fr\ApiToken\Context\AuthenticatedAspect;
+use CPSIT\ApiToken\Context\AuthenticatedAspect;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
