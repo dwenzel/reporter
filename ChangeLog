@@ -1,3 +1,8 @@
+2023-01-06         [RELEASE] Release of reporter 1.0.0 (Dirk Wenzel)
+2022-10-13 d5174b6 [TASK] require cpsit/api-token ~0.8 (Dirk Wenzel)
+2022-10-13 28f0843 [TASK] adapt usage of fr/api-token to new name cpsit/api-token (Dirk Wenzel)
+2022-10-12 f3e649e dependency from dwenzel/reporter-api corrected (Dirk Wenzel)
+
 2022-10-12         [RELEASE] Release of reporter 0.4.1 (Dirk Wenzel)
 2022-10-12 2f25b37 [BUGFIX] prevent error on array access due to invalid key with PHP 8.* (Dirk Wenzel)
 2022-10-11 7654fc3 [BUGFIX] fixed error in mock class for unit tests caused by invalid property type and changes in dependency cpsit/auditor (Dirk Wenzel)
