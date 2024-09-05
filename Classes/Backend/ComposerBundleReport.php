@@ -90,6 +90,7 @@ class ComposerBundleReport implements ReportInterface
 
     public const TEMPLATE_PATH = '/Backend/ComposerBundleReport.html';
 
+    public const IDENTIFIER = 'composer-bundle-report';
 
     /**
      * @return string
@@ -126,4 +127,23 @@ class ComposerBundleReport implements ReportInterface
     }
 
 
+    public function getIdentifier(): string
+    {
+        return self::IDENTIFIER;
+    }
+
+    public function getTitle(): string
+    {
+        return 'Composer Bundle Report';
+    }
+
+    public function getDescription(): string
+    {
+        return 'foo bar';
+    }
+
+    public function getIconIdentifier(): string
+    {
+        return SI::ICON_BUNDLE_IDENTIFIER;
+    }
 }

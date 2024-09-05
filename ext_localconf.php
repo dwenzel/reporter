@@ -11,12 +11,13 @@ $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\
 foreach ($faIconsToRegister as $identifier => $name) {
     $iconRegistry->registerIcon(
         $identifier,
-        \\FriendsOfTYPO3\FontawesomeProvider\Imaging\IconProvider\FontawesomeIconProvider::class,
+        \FriendsOfTYPO3\FontawesomeProvider\Imaging\IconProvider\FontawesomeIconProvider::class,
         ['name' => $name]
     );
 }
 
 // connect slots to signals
+/*
 $signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
 $signalSlotDispatcher->connect(
     \TYPO3\CMS\Backend\Backend\ToolbarItems\SystemInformationToolbarItem::class,
@@ -24,6 +25,6 @@ $signalSlotDispatcher->connect(
     \DWenzel\Reporter\Backend\ToolbarItems\SystemInformationSlot::class,
     'systemInformationToolbarItemSlot'
 );
-
+*/
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['routing']['enhancers'][\DWenzel\Reporter\Routing\Enhancer\ReporterApiEnhancer::REGISTRATION_KEY] = \DWenzel\Reporter\Routing\Enhancer\ReporterApiEnhancer::class;
 

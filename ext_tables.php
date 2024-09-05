@@ -16,14 +16,7 @@
  * This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-if (!defined('TYPO3_MODE')) {
+if (!defined('TYPO3')) {
     die ('Access denied.');
 }
 
-if (TYPO3_MODE == 'BE') {
-    /** @var \DWenzel\Reporter\Backend\Configurator $configurator */
-    $configurator = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\DWenzel\Reporter\Backend\Configurator::class);
-    $configurator->registerReports(
-        \DWenzel\Reporter\Utility\SettingsInterface::REPORTS_TO_REGISTER
-    );
-}

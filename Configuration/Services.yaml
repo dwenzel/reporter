@@ -1,3 +1,7 @@
 services:
   _defaults:
     autoconfigure: true
+
+#DWenzel\Reporter\Backend\ComposerBundleReport:
+#  tags:
+#    - name: reports.report
