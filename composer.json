@@ -27,6 +27,7 @@
     "typo3/cms-core": ">=8.7.0",
     "typo3/cms-reports": ">=8.7",
     "cpsit/auditor": "~0.4",
+    "friendsoftypo3/fontawesome-provider": "~1.0",
     "dwenzel/reporter-api": "~0.1",
     "cpsit/api-token": "~1.0"
   },

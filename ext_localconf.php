@@ -1,7 +1,7 @@
 <?php
 
 
-if (!defined('TYPO3_MODE')) {
+if (!defined('TYPO3')) {
     die ('Access denied');
 }
 
@@ -11,7 +11,7 @@ $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\
 foreach ($faIconsToRegister as $identifier => $name) {
     $iconRegistry->registerIcon(
         $identifier,
-        \TYPO3\CMS\Core\Imaging\IconProvider\FontawesomeIconProvider::class,
+        \\FriendsOfTYPO3\FontawesomeProvider\Imaging\IconProvider\FontawesomeIconProvider::class,
         ['name' => $name]
     );
 }
