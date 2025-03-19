@@ -24,8 +24,8 @@
     }
   ],
   "require": {
-    "typo3/cms-core": ">=8.7.0",
-    "typo3/cms-reports": ">=8.7",
+	  "typo3/cms-core": "^12.4 || ^13.4",
+    "typo3/cms-reports": "^12.4 || ^13.4",
     "cpsit/auditor": "~0.4",
     "friendsoftypo3/fontawesome-provider": "~1.0",
     "dwenzel/reporter-api": "~0.1",
@@ -33,9 +33,9 @@
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
-    "nimut/testing-framework": "^3.0",
     "phpunit/phpunit": "^5.6 || ^6.0",
-    "dwenzel/reporter-api": "dev-develop as 0.1.0"
+    "dwenzel/reporter-api": "dev-develop as 0.1.0",
+	"cpsit/auditor": "dev-develop as 0.5.0"
   },
   "autoload": {
     "psr-4": {
