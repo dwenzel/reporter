@@ -1,121 +1,101 @@
 <?php
 
-namespace CPSIT\Auditor\Tests\Unit\Backend;
+declare(strict_types=1);
+namespace DWenzel\Reporter\Tests\Unit\Backend;
 
-/***************************************************************
- *  Copyright notice
- *
- *  (c) 2019 Dirk Wenzel <wenzel@cps-it.de>
- *  All rights reserved
- *
- * The GNU General Public License can be found at
- * http://www.gnu.org/copyleft/gpl.html.
- * A copy is found in the text file GPL.txt and important notices to the license
- * from the author is found in LICENSE.txt distributed with these scripts.
- * This script is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
 
 use CPSIT\Auditor\Reflection\PackageVersions;
 use DWenzel\Reporter\Backend\ComposerPackagesReport;
 use DWenzel\Reporter\Utility\SettingsInterface;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use TYPO3Fluid\Fluid\View\ViewInterface;
-
 
 class ComposerPackagesReportTest extends UnitTestCase
 {
+    protected ComposerPackagesReport|MockObject $subject;
 
+    protected ViewInterface|MockObject $view;
 
-    /**
-     * @var ComposerPackagesReport|MockObject
-     */
-    protected $subject;
-
-    /**
-     * @var ViewInterface|MockObject
-     */
-    protected $view;
-
-    protected $packages = [
-        'foo/bar' => '1.0.5@12345'
+    protected array $packages = [
+        'foo/bar' => '1.0.5@12345',
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->subject = $this->getMockBuilder(ComposerPackagesReport::class)
-            ->setMethods(['callStatic', 'initializeStandaloneView'])
+            ->onlyMethods(['callStatic', 'initializeStandaloneView'])
             ->getMock();
 
         $this->view = $this->getMockBuilder(StandaloneView::class)
             ->disableOriginalConstructor()
-            ->setMethods(['assignMultiple', 'setTemplatePathAndFilename', 'render'])
+            ->onlyMethods(['assignMultiple', 'setTemplatePathAndFilename', 'render'])
             ->getMock();
     }
 
     /**
      * @test
      */
-    public function viewCanBeInjected()
+    public function viewCanBeInjected(): void
     {
         /** @var ViewInterface|MockObject $view */
         $view = $this->getMockBuilder(ViewInterface::class)
             ->getMockForAbstractClass();
         $this->subject->injectView($view);
-        $this->assertAttributeSame(
-            $view,
-            'view',
-            $this->subject
-        );
+        $reflection = new \ReflectionClass($this->subject);
+        $viewProperty = $reflection->getProperty('view');
+        $viewProperty->setAccessible(true);
+        
+        self::assertSame($view, $viewProperty->getValue($this->subject));
     }
 
     /**
      * @test
      */
-    public function getReportInitializesView()
+    public function getReportInitializesView(): void
     {
-        $this->subject->expects($this->once())
+        $this->subject->expects(self::once())
             ->method('initializeStandaloneView')
             ->willReturn($this->view);
+        $this->view->expects(self::once())
+            ->method('render')
+            ->willReturn('test result');
 
         $this->subject->getReport();
-        $this->assertAttributeSame(
-            $this->view,
-            'view',
-            $this->subject
-        );
+        
+        $reflection = new \ReflectionClass($this->subject);
+        $viewProperty = $reflection->getProperty('view');
+        $viewProperty->setAccessible(true);
+        
+        self::assertSame($this->view, $viewProperty->getValue($this->subject));
     }
 
     /**
      * @test
      */
-    public function getReportAssignsVariablesToView()
+    public function getReportAssignsVariablesToView(): void
     {
-        $this->subject->expects($this->once())
+        $this->subject->expects(self::once())
             ->method('initializeStandaloneView')
             ->willReturn($this->view);
 
         $expectedVariables = [
-            SettingsInterface::PACKAGES_KEY => $this->packages
+            SettingsInterface::PACKAGES_KEY => $this->packages,
         ];
 
-        $this->subject->expects($this->once())
+        $this->subject->expects(self::once())
             ->method('callStatic')
             ->with(PackageVersions::class, 'getAll')
             ->willReturn($this->packages);
 
-        $this->view->expects($this->once())
+        $this->view->expects(self::once())
             ->method('assignMultiple')
             ->with($expectedVariables);
+        $this->view->expects(self::once())
+            ->method('render')
+            ->willReturn('test result');
 
         $this->subject->getReport();
     }
@@ -123,19 +103,19 @@ class ComposerPackagesReportTest extends UnitTestCase
     /**
      * @test
      */
-    public function getReportReturnsRenderedView()
+    public function getReportReturnsRenderedView(): void
     {
         $renderResult = 'foo';
 
-        $this->subject->expects($this->any())
+        $this->subject->expects(self::any())
             ->method('initializeStandaloneView')
             ->willReturn($this->view);
 
-        $this->view->expects($this->once())
+        $this->view->expects(self::once())
             ->method('render')
             ->willReturn($renderResult);
 
-        $this->assertSame(
+        self::assertSame(
             $renderResult,
             $this->subject->getReport()
         );

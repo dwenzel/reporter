@@ -1,19 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DWenzel\Reporter\Utility;
 
-/**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
- */
 
 use DWenzel\Reporter\Backend\ComposerBundleReport;
 use DWenzel\Reporter\Backend\ComposerPackagesReport;
@@ -40,7 +30,6 @@ interface SettingsInterface
     public const TYPO3_CONF_VARS_KEY = 'TYPO3_CONF_VARS';
     public const SC_OPTIONS_KEY = 'SC_OPTIONS';
 
-
     public const RESOURCES_PATH = 'EXT:' . self::EXTENSION_KEY . '/Resources/';
     public const LANGUAGE_FILE_PATH = self::RESOURCES_PATH . 'Private/Language/';
     public const LAYOUT_ROOT_PATH = self::RESOURCES_PATH . 'Private/Layouts';
@@ -50,22 +39,21 @@ interface SettingsInterface
     public const ICON_PATH = self::RESOURCES_PATH . 'Public/Icons/';
 
     /**
-     * Icons to register with
-     * \TYPO3\CMS\Core\Imaging\IconProvider\FontawesomeIconProvider
+     * Mapping of report identifiers to icon identifiers
      */
-    public const FA_ICONS_TO_REGISTER = [
-        self::ICON_BUNDLE_IDENTIFIER => 'th-large',
-        self::ICON_BUNDLE_NAME_IDENTIFIER => 'tag'
+    public const REPORT_ICON_MAPPING = [
+        'composer-bundle-report' => self::ICON_BUNDLE_IDENTIFIER,
+        'composer-packages-report' => self::ICON_BUNDLE_IDENTIFIER,
     ];
 
     public const REPORTS_TO_REGISTER = [
         'composerBundle' => [
-            self::ICON_KEY => 'th-large.svg',
-            self::CLASS_KEY => ComposerBundleReport::class
+            self::ICON_KEY => 'table-cells-large.svg',
+            self::CLASS_KEY => ComposerBundleReport::class,
         ],
         'composerPackages' => [
-            self::ICON_KEY => 'th-large.svg',
-            self::CLASS_KEY => ComposerPackagesReport::class
-        ]
+            self::ICON_KEY => 'table-cells-large.svg',
+            self::CLASS_KEY => ComposerPackagesReport::class,
+        ],
     ];
 }

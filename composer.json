@@ -11,12 +11,6 @@
   "license": [
     "GPL-2.0+"
   ],
-  "repositories": {
-    "api-token": {
-      "type": "vcs",
-      "url": "git@github.com:CPS-IT/api-token.git"
-    }
-  },
   "authors": [
     {
       "name": "Dirk Wenzel",
@@ -25,11 +19,7 @@
   ],
   "require": {
     "typo3/cms-core": "^12.4 || ^13.4",
-    "typo3/cms-reports": "^12.4 || ^13.4",
-    "cpsit/auditor": "~0.4",
-    "friendsoftypo3/fontawesome-provider": "~1.0",
-    "dwenzel/reporter-api": "~0.1",
-    "cpsit/api-token": "*"
+    "typo3/cms-reports": "^12.4 || ^13.4"
   },
   "require-dev": {
     "armin/editorconfig-cli": "^2.0",
@@ -53,7 +43,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "DWenzel\\Reporter\\Tests\\": "Tests"
+      "DWenzel\\Reporter\\Tests\\": "Tests",
+      "CPSIT\\Auditor\\": "Tests/Unit/Fixtures"
     }
   },
   "config": {

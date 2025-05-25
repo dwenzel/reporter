@@ -1,23 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DWenzel\Reporter\Backend;
 
-/***************************************************************
- *  Copyright notice
- *
- *  (c) 2019 Dirk Wenzel
- *  All rights reserved
- *
- * The GNU General Public License can be found at
- * http://www.gnu.org/copyleft/gpl.html.
- * A copy is found in the text file GPL.txt and important notices to the license
- * from the author is found in LICENSE.txt distributed with these scripts.
- * This script is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
 
 use DWenzel\Reporter\CallStaticTrait;
 use DWenzel\Reporter\Reflection\Property\Aliases;
@@ -46,11 +32,8 @@ use DWenzel\Reporter\Reflection\Property\Type;
 use DWenzel\Reporter\Reflection\Property\UniqueName;
 use DWenzel\Reporter\Reflection\Property\Version;
 use DWenzel\Reporter\Utility\SettingsInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
-use TYPO3\CMS\Reports\ReportInterface;
-use TYPO3Fluid\Fluid\View\ViewInterface;
 use DWenzel\Reporter\Utility\SettingsInterface as SI;
+use TYPO3\CMS\Reports\ReportInterface;
 
 /**
  * Class ComposerBundleReport
@@ -59,7 +42,9 @@ use DWenzel\Reporter\Utility\SettingsInterface as SI;
  */
 class ComposerBundleReport implements ReportInterface
 {
-    use CallStaticTrait, ViewTrait;
+    use CallStaticTrait;
+    use ViewTrait;
+    use ReportIconTrait;
 
     public const PROPERTIES_TO_DISPLAY = [
         Aliases::class,
@@ -85,24 +70,21 @@ class ComposerBundleReport implements ReportInterface
         StabilityFlags::class,
         Type::class,
         UniqueName::class,
-        Version::class
+        Version::class,
     ];
 
     public const TEMPLATE_PATH = '/Backend/ComposerBundleReport.html';
 
     public const IDENTIFIER = 'composer-bundle-report';
 
-    /**
-     * @return string
-     */
-    public function getReport()
+    public function getReport(): string
     {
         $properties = $this->getProperties();
         $this->view = $this->initializeStandaloneView();
 
         $this->view->assignMultiple(
             [
-                SettingsInterface::PROPERTIES_KEY => $properties
+                SettingsInterface::PROPERTIES_KEY => $properties,
             ]
         );
 
@@ -112,7 +94,7 @@ class ComposerBundleReport implements ReportInterface
     /**
      * Get all properties of the bundle
      *
-     * @return array
+     * @return PropertyInterface[]
      */
     public function getProperties(): array
     {
@@ -125,7 +107,6 @@ class ComposerBundleReport implements ReportInterface
 
         return $properties;
     }
-
 
     public function getIdentifier(): string
     {
@@ -142,8 +123,4 @@ class ComposerBundleReport implements ReportInterface
         return 'foo bar';
     }
 
-    public function getIconIdentifier(): string
-    {
-        return SI::ICON_BUNDLE_IDENTIFIER;
-    }
 }

@@ -1,30 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DWenzel\Reporter\Tests\Unit\Backend;
 
-/***************************************************************
- *  Copyright notice
- *
- *  (c) 2019 Dirk Wenzel
- *  All rights reserved
- *
- * The GNU General Public License can be found at
- * http://www.gnu.org/copyleft/gpl.html.
- * A copy is found in the text file GPL.txt and important notices to the license
- * from the author is found in LICENSE.txt distributed with these scripts.
- * This script is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
 
 use DWenzel\Reporter\Backend\ComposerBundleReport;
 use DWenzel\Reporter\Utility\SettingsInterface;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use TYPO3Fluid\Fluid\View\ViewInterface;
 
 /**
@@ -32,71 +18,63 @@ use TYPO3Fluid\Fluid\View\ViewInterface;
  */
 class ComposerBundleReportTest extends UnitTestCase
 {
+    protected ComposerBundleReport|MockObject $subject;
 
-    /**
-     * @var ComposerBundleReport|MockObject
-     */
-    protected $subject;
+    protected ViewInterface|MockObject $view;
 
-    /**
-     * @var ViewInterface|MockObject
-     */
-    protected $view;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
         $this->subject = $this->getMockBuilder(ComposerBundleReport::class)
-            ->setMethods(['callStatic'])
+            ->onlyMethods(['callStatic'])
             ->getMock();
 
         $this->view = $this->getMockBuilder(StandaloneView::class)
             ->disableOriginalConstructor()
-            ->setMethods(['assignMultiple', 'setTemplatePathAndFilename', 'render'])
+            ->onlyMethods(['assignMultiple', 'setTemplatePathAndFilename', 'render'])
             ->getMock();
     }
 
     /**
      * @test
      */
-    public function viewCanBeInjected()
+    public function viewCanBeInjected(): void
     {
         $view = $this->getMockBuilder(ViewInterface::class)
             ->getMockForAbstractClass();
         $this->subject->injectView($view);
-        $this->assertAttributeSame(
-            $view,
-            'view',
-            $this->subject
-        );
+        
+        $reflection = new \ReflectionClass($this->subject);
+        $viewProperty = $reflection->getProperty('view');
+        $viewProperty->setAccessible(true);
+        
+        self::assertSame($view, $viewProperty->getValue($this->subject));
     }
 
     /**
      * @test
      */
-    public function getPropertiesInstantiatesPropertiesFromClassConstant()
+    public function getPropertiesInstantiatesPropertiesFromClassConstant(): void
     {
         $properties = $this->subject->getProperties();
-        foreach (ComposerBundleReport::PROPERTIES_TO_DISPLAY as $item) {
-            $expectedObject = new $item();
-            $this->assertContains(
-                $expectedObject,
-                $properties,
-                '',
-                false,
-                false
-            );
+        self::assertCount(count(ComposerBundleReport::PROPERTIES_TO_DISPLAY), $properties);
+        
+        foreach ($properties as $property) {
+            self::assertInstanceOf(\DWenzel\Reporter\Reflection\Property\PropertyInterface::class, $property);
+        }
+        
+        $propertyClasses = array_map(fn($property) => get_class($property), $properties);
+        foreach (ComposerBundleReport::PROPERTIES_TO_DISPLAY as $expectedClass) {
+            self::assertContains($expectedClass, $propertyClasses);
         }
     }
 
     /**
      * @test
      */
-    public function getReportInitializesView()
+    public function getReportInitializesView(): void
     {
-        $this->subject->expects($this->once())
+        $this->subject->expects(self::once())
             ->method('callStatic')
             ->with(
                 GeneralUtility::class,
@@ -105,57 +83,65 @@ class ComposerBundleReportTest extends UnitTestCase
             )
             ->willReturn($this->view);
 
-        $this->view->expects($this->once())
+        $this->view->expects(self::once())
             ->method('setTemplatePathAndFilename');
+        $this->view->expects(self::once())
+            ->method('render')
+            ->willReturn('test result');
         $this->subject->getReport();
-        $this->assertAttributeSame(
-            $this->view,
-            'view',
-            $this->subject
-        );
+        
+        $reflection = new \ReflectionClass($this->subject);
+        $viewProperty = $reflection->getProperty('view');
+        $viewProperty->setAccessible(true);
+        
+        self::assertSame($this->view, $viewProperty->getValue($this->subject));
     }
 
     /**
      * @test
      */
-    public function getReportAssignsVariablesToView()
+    public function getReportAssignsVariablesToView(): void
     {
         $expectedVariables = [
-            SettingsInterface::PROPERTIES_KEY => $this->subject->getProperties()
+            SettingsInterface::PROPERTIES_KEY => $this->subject->getProperties(),
         ];
 
-        $this->subject->expects($this->once())
+        $this->subject->expects(self::once())
             ->method('callStatic')
             ->willReturn($this->view);
 
-        $this->view->expects($this->once())
+        $this->view->expects(self::once())
             ->method('assignMultiple')
             ->with($expectedVariables);
+        $this->view->expects(self::once())
+            ->method('render')
+            ->willReturn('test result');
 
         $this->subject->getReport();
-        $this->assertAttributeSame(
-            $this->view,
-            'view',
-            $this->subject
-        );
+        
+        $reflection = new \ReflectionClass($this->subject);
+        $viewProperty = $reflection->getProperty('view');
+        $viewProperty->setAccessible(true);
+        
+        self::assertSame($this->view, $viewProperty->getValue($this->subject));
     }
 
     /**
      * @test
      */
-    public function getReportReturnsRenderedView()
+    public function getReportReturnsRenderedView(): void
     {
         $renderResult = 'foo';
 
-        $this->subject->expects($this->any())
+        $this->subject->expects(self::any())
             ->method('callStatic')
             ->willReturn($this->view);
 
-        $this->view->expects($this->once())
+        $this->view->expects(self::once())
             ->method('render')
             ->willReturn($renderResult);
 
-        $this->assertSame(
+        self::assertSame(
             $renderResult,
             $this->subject->getReport()
         );

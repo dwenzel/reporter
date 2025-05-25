@@ -1,27 +1,9 @@
 <?php
+
 declare(strict_types=1);
 
 namespace DWenzel\Reporter\Routing\Compiler;
 
-/*
- * This file is part of the TYPO3 CMS extension "joh_rest".
- *
- * Copyright (C) 2020 Elias Häußler <e.haeussler@familie-redlich.de>
- * Copyright (C) 2022 Dirk Wenzel <d.wenzel@familie-redlich.de>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
- */
 
 use DWenzel\Reporter\Configuration\RestApiInterface;
 use Symfony\Component\Routing\CompiledRoute;
@@ -30,13 +12,10 @@ use Symfony\Component\Routing\RouteCompiler;
 
 /**
  * DefaultRestApiRouteCompiler
- *
- * @author Elias Häußler <e.haeussler@familie-redlich.de>
- * @license GPL-3.0-or-later
  */
 class DefaultRestApiRouteCompiler extends RouteCompiler implements RestApiInterface
 {
-    public static function compile(Route $route)
+    public static function compile(Route $route): CompiledRoute
     {
         $compiledRoute = parent::compile($route);
 

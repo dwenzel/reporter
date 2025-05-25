@@ -1,4 +1,5 @@
 <?php
+
 /***************************************************************
  *  Copyright notice
  *
@@ -20,7 +21,7 @@ return [
     'frontend' => [
         'dwenzel/reporter/application-report-api' => [
             'target' => \DWenzel\Reporter\Middleware\ApplicationReportApi::class,
-            'after' => ['cpsit/api-token/api-key-authenticator']
-        ]
-    ]
+            'after' => ['cpsit/api-token/api-key-authenticator'],
+        ],
+    ],
 ];

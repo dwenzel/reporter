@@ -1,19 +1,65 @@
-<table>
-    <thead>
-    <th>Composer Bundle Properties</th>
-    </thead>
-
-    <f:for each="{properties}" as="property">
-        <f:if condition="{property.value}">
-                <f:render section="property" arguments="{property: property}"/>
-        </f:if>
-    </f:for>
-</table>
+<div class="card-container">
+    <div class="card card-size-large">
+        <div class="card-header">
+            <h3>Composer Bundle Properties</h3>
+        </div>
+        <div class="card-body">
+            <f:if condition="{properties}">
+                <f:then>
+                    <div class="panel panel-default">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>Property</th>
+                                <th>Value</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <f:for each="{properties}" as="property">
+                                <f:if condition="{property.value}">
+                                    <f:render section="property" arguments="{property: property}"/>
+                                </f:if>
+                            </f:for>
+                            </tbody>
+                        </table>
+                    </div>
+                </f:then>
+                <f:else>
+                    <div class="alert alert-info">
+                        <strong>No properties found</strong>
+                        <p>No composer bundle properties are available to display.</p>
+                    </div>
+                </f:else>
+            </f:if>
+        </div>
+    </div>
+</div>
 
 <f:section name="property">
     <tr>
+        <td class="nowrap">
+            <strong>{property.key}</strong>
+        </td>
         <td>
-            <f:debug inline="true" title="{property.key}">{property.value}</f:debug>
+            <f:if condition="{property.type} == 1">
+                <f:then>
+                    <f:render section="arrayValue" arguments="{value: property.value}"/>
+                </f:then>
+                <f:else>
+                    <f:format.nl2br>{property.value}</f:format.nl2br>
+                </f:else>
+            </f:if>
         </td>
     </tr>
+</f:section>
+
+<f:section name="arrayValue">
+    <f:if condition="{value}">
+        <f:then>
+            <code><f:format.json>{value}</f:format.json></code>
+        </f:then>
+        <f:else>
+            <em>Empty array</em>
+        </f:else>
+    </f:if>
 </f:section>
