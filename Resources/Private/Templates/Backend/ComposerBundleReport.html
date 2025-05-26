@@ -43,7 +43,7 @@
         <td>
             <f:if condition="{property.type} == 1">
                 <f:then>
-                    <f:render section="arrayValue" arguments="{value: property.value}"/>
+                    <f:render section="arrayValue" arguments="{value: property.value, title: property.key}"/>
                 </f:then>
                 <f:else>
                     <f:format.nl2br>{property.value}</f:format.nl2br>
@@ -56,7 +56,10 @@
 <f:section name="arrayValue">
     <f:if condition="{value}">
         <f:then>
-            <code><f:format.json>{value}</f:format.json></code>
+            <f:comment><!--
+            Use debugging to display the array structure. It is just for devs.
+             --></f:comment>
+            <code><f:debug inline="true" title="{title}">{value}</f:debug></code>
         </f:then>
         <f:else>
             <em>Empty array</em>
