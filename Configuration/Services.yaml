@@ -4,3 +4,9 @@ services:
 
   DWenzel\Reporter\:
     resource: '../Classes/*'
+
+  DWenzel\Reporter\Backend\ToolbarItems\SystemInformationSlot:
+    tags:
+      - name: event.listener
+        identifier: 'dwenzel-reporter-system-information'
+        event: TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent

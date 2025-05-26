@@ -8,10 +8,10 @@ namespace DWenzel\Reporter\Backend\ToolbarItems;
 use CPSIT\Auditor\DescriberInterface;
 use CPSIT\Auditor\SettingsInterface as AuditorSI;
 use DWenzel\Reporter\Utility\SettingsInterface as SI;
-use TYPO3\CMS\Backend\Backend\ToolbarItems\SystemInformationToolbarItem;
+use TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent;
 
 /**
- * Class SystemInformationSlot
+ * Event listener for adding bundle information to the System Information Toolbar
  */
 class SystemInformationSlot
 {
@@ -41,11 +41,12 @@ class SystemInformationSlot
     }
 
     /**
-     * Slot method for signal SystemInformationToolbarItem
+     * PSR-14 Event listener for SystemInformationToolbarCollectorEvent
      */
-    public function systemInformationToolbarItemSlot(SystemInformationToolbarItem $item): void
+    public function __invoke(SystemInformationToolbarCollectorEvent $event): void
     {
-
+        $item = $event->getToolbarItem();
+        
         $className = $this->getDescriberClassName();
         if (!class_exists($className)
             || !in_array(DescriberInterface::class, class_implements($className) ?: [], true)
