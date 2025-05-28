@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DWenzel\Reporter\Routing\Compiler;
 
-
 use DWenzel\Reporter\Configuration\RestApiInterface;
 use Symfony\Component\Routing\CompiledRoute;
 use Symfony\Component\Routing\Route;

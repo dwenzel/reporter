@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DWenzel\Reporter\Backend;
 
-
 use DWenzel\Reporter\CallStaticTrait;
 use DWenzel\Reporter\Reflection\Property\Aliases;
 use DWenzel\Reporter\Reflection\Property\Authors;
@@ -32,7 +31,6 @@ use DWenzel\Reporter\Reflection\Property\Type;
 use DWenzel\Reporter\Reflection\Property\UniqueName;
 use DWenzel\Reporter\Reflection\Property\Version;
 use DWenzel\Reporter\Utility\SettingsInterface;
-use DWenzel\Reporter\Utility\SettingsInterface as SI;
 use TYPO3\CMS\Reports\ReportInterface;
 
 /**

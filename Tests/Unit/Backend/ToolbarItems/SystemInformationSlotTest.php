@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 namespace DWenzel\Reporter\Tests\Unit\Backend\ToolbarItems;
 
 use DWenzel\Reporter\Backend\ToolbarItems\SystemInformationSlot;
@@ -27,7 +28,7 @@ class SystemInformationSlotTest extends UnitTestCase
     public function setUp(): void
     {
         parent::setUp();
-        
+
         $this->toolbarItem = $this->getMockBuilder(SystemInformationToolbarItem::class)
             ->disableOriginalConstructor()
             ->onlyMethods(['addSystemInformation'])->getMock();

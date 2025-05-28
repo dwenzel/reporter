@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 namespace DWenzel\Reporter\Tests\Unit\Reflection\Property;
 
 use DWenzel\Reporter\Reflection\Property\Aliases;
@@ -22,10 +23,10 @@ class AliasesTest extends UnitTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         // Initialize MockBundleDescriber test data
         MockBundleDescriber::initializeProperties();
-        
+
         // Use MockBundleDescriber for testing
         $this->subject = new Aliases(MockBundleDescriber::class);
     }
@@ -81,7 +82,7 @@ class AliasesTest extends UnitTestCase
         $json = $this->subject->toJson();
         self::assertIsString($json);
         self::assertJson($json);
-        
+
         // Verify we can decode it back to the same value
         $decoded = json_decode($json, true);
         self::assertSame($decoded, $this->subject->getValue());

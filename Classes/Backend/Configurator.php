@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DWenzel\Reporter\Backend;
 
-
 use DWenzel\Reporter\Utility\SettingsInterface as SI;
 
 /**

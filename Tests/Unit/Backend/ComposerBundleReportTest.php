@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DWenzel\Reporter\Tests\Unit\Backend;
 
-
 use DWenzel\Reporter\Backend\ComposerBundleReport;
 use DWenzel\Reporter\Utility\SettingsInterface;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -43,11 +42,11 @@ class ComposerBundleReportTest extends UnitTestCase
         $view = $this->getMockBuilder(ViewInterface::class)
             ->getMockForAbstractClass();
         $this->subject->injectView($view);
-        
+
         $reflection = new \ReflectionClass($this->subject);
         $viewProperty = $reflection->getProperty('view');
         $viewProperty->setAccessible(true);
-        
+
         self::assertSame($view, $viewProperty->getValue($this->subject));
     }
 
@@ -58,11 +57,11 @@ class ComposerBundleReportTest extends UnitTestCase
     {
         $properties = $this->subject->getProperties();
         self::assertCount(count(ComposerBundleReport::PROPERTIES_TO_DISPLAY), $properties);
-        
+
         foreach ($properties as $property) {
             self::assertInstanceOf(\DWenzel\Reporter\Reflection\Property\PropertyInterface::class, $property);
         }
-        
+
         $propertyClasses = array_map(fn($property) => get_class($property), $properties);
         foreach (ComposerBundleReport::PROPERTIES_TO_DISPLAY as $expectedClass) {
             self::assertContains($expectedClass, $propertyClasses);
@@ -89,11 +88,11 @@ class ComposerBundleReportTest extends UnitTestCase
             ->method('render')
             ->willReturn('test result');
         $this->subject->getReport();
-        
+
         $reflection = new \ReflectionClass($this->subject);
         $viewProperty = $reflection->getProperty('view');
         $viewProperty->setAccessible(true);
-        
+
         self::assertSame($this->view, $viewProperty->getValue($this->subject));
     }
 
@@ -118,11 +117,11 @@ class ComposerBundleReportTest extends UnitTestCase
             ->willReturn('test result');
 
         $this->subject->getReport();
-        
+
         $reflection = new \ReflectionClass($this->subject);
         $viewProperty = $reflection->getProperty('view');
         $viewProperty->setAccessible(true);
-        
+
         self::assertSame($this->view, $viewProperty->getValue($this->subject));
     }
 

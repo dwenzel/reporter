@@ -1,8 +1,8 @@
 <?php
 
 declare(strict_types=1);
-namespace DWenzel\Reporter\Tests\Unit\Backend;
 
+namespace DWenzel\Reporter\Tests\Unit\Backend;
 
 use CPSIT\Auditor\Reflection\PackageVersions;
 use DWenzel\Reporter\Backend\ComposerPackagesReport;
@@ -47,7 +47,7 @@ class ComposerPackagesReportTest extends UnitTestCase
         $reflection = new \ReflectionClass($this->subject);
         $viewProperty = $reflection->getProperty('view');
         $viewProperty->setAccessible(true);
-        
+
         self::assertSame($view, $viewProperty->getValue($this->subject));
     }
 
@@ -64,11 +64,11 @@ class ComposerPackagesReportTest extends UnitTestCase
             ->willReturn('test result');
 
         $this->subject->getReport();
-        
+
         $reflection = new \ReflectionClass($this->subject);
         $viewProperty = $reflection->getProperty('view');
         $viewProperty->setAccessible(true);
-        
+
         self::assertSame($this->view, $viewProperty->getValue($this->subject));
     }
 

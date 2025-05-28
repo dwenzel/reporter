@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 namespace DWenzel\Reporter\Tests\Unit\Reflection\Property;
 
 use DWenzel\Reporter\Reflection\Property\Config;
@@ -28,10 +29,10 @@ class ConfigTest extends UnitTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         // Initialize MockBundleDescriber test data
         MockBundleDescriber::initializeProperties();
-        
+
         // Use MockBundleDescriber for testing
         $this->subject = new Config(MockBundleDescriber::class);
     }

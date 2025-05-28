@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 namespace DWenzel\Reporter\Tests\Unit\Reflection\Property;
 
 use DWenzel\Reporter\MissingClassException;
@@ -32,7 +33,7 @@ class PropertyTraitTest extends UnitTestCase
     {
         $this->expectException(MissingClassException::class);
         $this->expectExceptionCode(1548611214);
-        
+
         $this->subject->__construct('fooClass');
     }
 
@@ -43,7 +44,7 @@ class PropertyTraitTest extends UnitTestCase
     {
         $this->expectException(MissingInterfaceException::class);
         $this->expectExceptionCode(1548611215);
-        
+
         $this->subject->__construct(MockClassNotImplementingInterface::class);
     }
 }

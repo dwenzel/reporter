@@ -17,8 +17,8 @@ trait ReportIconTrait
     public function getIconIdentifier(): string
     {
         $reportIdentifier = $this->getIdentifier();
-        
-        return SettingsInterface::REPORT_ICON_MAPPING[$reportIdentifier] 
+
+        return SettingsInterface::REPORT_ICON_MAPPING[$reportIdentifier]
             ?? SettingsInterface::ICON_BUNDLE_IDENTIFIER;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 namespace DWenzel\Reporter\Tests\Unit\Reflection\Property;
 
 use DWenzel\Reporter\Reflection\Property\Authors;

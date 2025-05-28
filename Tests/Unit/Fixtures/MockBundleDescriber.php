@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 namespace DWenzel\Reporter\Tests\Unit\Fixtures;
 
 use CPSIT\Auditor\DescriberInterface;
@@ -14,7 +15,7 @@ use CPSIT\Auditor\DescriberInterface;
 final class MockBundleDescriber implements DescriberInterface
 {
     protected static $properties;
-    
+
     public static function initializeProperties(): void
     {
         if (self::$properties === null) {
@@ -76,7 +77,7 @@ final class MockBundleDescriber implements DescriberInterface
                 'type' => 'library',
                 'uniqueName' => 'dwenzel/foo-bundle-dev-develop',
             ];
-            
+
             // Properties are expected as serialized string by PropertyTrait
             self::$properties = serialize($data);
         }

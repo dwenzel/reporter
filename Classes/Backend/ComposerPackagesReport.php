@@ -8,7 +8,6 @@ use CPSIT\Auditor\Reflection\PackageVersions;
 use DWenzel\Reporter\CallStaticTrait;
 use DWenzel\Reporter\Utility\SettingsInterface;
 
-
 use TYPO3\CMS\Reports\ReportInterface;
 
 /**

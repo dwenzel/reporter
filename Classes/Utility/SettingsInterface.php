@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DWenzel\Reporter\Utility;
 
-
 use DWenzel\Reporter\Backend\ComposerBundleReport;
 use DWenzel\Reporter\Backend\ComposerPackagesReport;
 

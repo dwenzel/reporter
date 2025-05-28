@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DWenzel\Reporter\Reflection\Property;
 
-
 use CPSIT\Auditor\DescriberInterface;
 use CPSIT\Auditor\SettingsInterface as AuditorSI;
 use DWenzel\Reporter\MissingClassException;

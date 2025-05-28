@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DWenzel\Reporter;
 
-
 /**
  * Trait for static method calls
  *

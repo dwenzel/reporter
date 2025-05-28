@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace DWenzel\Reporter\Backend\ToolbarItems;
 
-
 use CPSIT\Auditor\DescriberInterface;
 use CPSIT\Auditor\SettingsInterface as AuditorSI;
 use DWenzel\Reporter\Utility\SettingsInterface as SI;
@@ -46,7 +45,7 @@ class SystemInformationSlot
     public function __invoke(SystemInformationToolbarCollectorEvent $event): void
     {
         $item = $event->getToolbarItem();
-        
+
         $className = $this->getDescriberClassName();
         if (!class_exists($className)
             || !in_array(DescriberInterface::class, class_implements($className) ?: [], true)

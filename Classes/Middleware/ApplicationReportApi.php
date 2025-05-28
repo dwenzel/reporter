@@ -11,7 +11,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-
 /**
  * Class ApplicationReportApi
  * Handles request for an application report API
