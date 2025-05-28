@@ -93,8 +93,8 @@ Extensive property reflection system in `Classes/Reflection/Property/` that anal
 ### Dependencies
 - Requires TYPO3 v12.4+ or v13.4+
 - Uses `cpsit/auditor` for auditing functionality
+- Uses `cpsit/api-token` for API authentication
 - Integrates with `dwenzel/reporter-api` for API endpoints
-- FontAwesome icons via `friendsoftypo3/fontawesome-provider`
 
 ### Test Structure
 - Unit tests in `Tests/Unit/` with PHPUnit configuration in `Tests/Build/UnitTests.xml`
