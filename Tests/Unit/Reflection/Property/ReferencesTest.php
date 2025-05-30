@@ -1,29 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DWenzel\Reporter\Tests\Unit\Reflection\Property;
 
-use DWenzel\Reporter\Reflection\Property\References;
 use DWenzel\Reporter\Reflection\Property\PropertyInterface;
+use DWenzel\Reporter\Reflection\Property\References;
 use DWenzel\Reporter\Tests\Unit\Fixtures\MockBundleDescriber;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-
-/***************************************************************
- *  Copyright notice
- *
- *  (c) 2019 Dirk Wenzel
- *  All rights reserved
- *
- * The GNU General Public License can be found at
- * http://www.gnu.org/copyleft/gpl.html.
- * A copy is found in the text file GPL.txt and important notices to the license
- * from the author is found in LICENSE.txt distributed with these scripts.
- * This script is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
 class ReferencesTest extends UnitTestCase
 {
     /**
@@ -34,17 +19,23 @@ class ReferencesTest extends UnitTestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
+
+        // Initialize MockBundleDescriber test data
+        MockBundleDescriber::initializeProperties();
+
+        // Use MockBundleDescriber for testing
         $this->subject = new References(MockBundleDescriber::class);
     }
 
     /**
      * @test
      */
-    public function classImplementsPropertyInterface()
+    public function classImplementsPropertyInterface(): void
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             PropertyInterface::class,
             $this->subject
         );
@@ -53,9 +44,9 @@ class ReferencesTest extends UnitTestCase
     /**
      * @test
      */
-    public function getTypeReturnsTypeArray()
+    public function getTypeReturnsTypeArray(): void
     {
-        $this->assertSame(
+        self::assertSame(
             PropertyInterface::TYPE_ARRAY,
             $this->subject->getType()
         );
@@ -64,9 +55,9 @@ class ReferencesTest extends UnitTestCase
     /**
      * @test
      */
-    public function getKeyReturnsClassConstantKey()
+    public function getKeyReturnsClassConstantKey(): void
     {
-        $this->assertSame(
+        self::assertSame(
             References::KEY,
             $this->subject->getKey()
         );
@@ -75,11 +66,11 @@ class ReferencesTest extends UnitTestCase
     /**
      * @test
      */
-    public function getValueReturnsReferencesFromMockClass()
+    public function getValueReturnsReferencesFromMockClass(): void
     {
         $expectedReferences = ['fooRef'];
 
-        $this->assertSame(
+        self::assertSame(
             $expectedReferences,
             $this->subject->getValue()
         );
@@ -88,12 +79,12 @@ class ReferencesTest extends UnitTestCase
     /**
      * @test
      */
-    public function toJsonReturnsJsonRepresentationFromMockClass()
+    public function toJsonReturnsJsonRepresentationFromMockClass(): void
     {
         $references = ['fooRef'];
 
         $expectedJson = json_encode($references);
-        $this->assertSame(
+        self::assertSame(
             $expectedJson,
             $this->subject->toJson()
         );

@@ -1,53 +1,52 @@
 <?php
 
-namespace DWenzel\Reporter\Backend;
-use DWenzel\Reporter\CallStaticTrait;
-use DWenzel\Reporter\Utility\SettingsInterface;
-use TYPO3\CMS\Reports\ReportInterface;
+declare(strict_types=1);
 
-/***************************************************************
- *  Copyright notice
- *
- *  (c) 2019 Dirk Wenzel <wenzel@cps-it.de>
- *  All rights reserved
- *
- * The GNU General Public License can be found at
- * http://www.gnu.org/copyleft/gpl.html.
- * A copy is found in the text file GPL.txt and important notices to the license
- * from the author is found in LICENSE.txt distributed with these scripts.
- * This script is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+namespace DWenzel\Reporter\Backend;
 
 use CPSIT\Auditor\Reflection\PackageVersions;
+use DWenzel\Reporter\CallStaticTrait;
+use DWenzel\Reporter\Utility\SettingsInterface;
+
+use TYPO3\CMS\Reports\ReportInterface;
 
 /**
  * Class ComposerPackagesReport
  */
 class ComposerPackagesReport implements ReportInterface
 {
+    use CallStaticTrait;
+    use ViewTrait;
+    use ReportIconTrait;
     public const TEMPLATE_PATH = '/Backend/ComposerPackagesReport.html';
-    use CallStaticTrait, ViewTrait;
 
-    /**
-     * @return string
-     */
-    public function getReport()
+    public function getReport(): string
     {
         $packages = $this->callStatic(PackageVersions::class, 'getAll');
         $this->view = $this->initializeStandaloneView();
 
         $this->view->assignMultiple(
             [
-                SettingsInterface::PACKAGES_KEY => $packages
+                SettingsInterface::PACKAGES_KEY => $packages,
             ]
         );
 
         return $this->view->render();
     }
 
+    public function getIdentifier(): string
+    {
+        return 'composer-packages-report';
+    }
+
+    public function getTitle(): string
+    {
+        return 'Composer Packages Report';
+    }
+
+    public function getDescription(): string
+    {
+        return 'Report showing all installed composer packages';
+    }
 
 }

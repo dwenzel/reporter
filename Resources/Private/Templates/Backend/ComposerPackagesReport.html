@@ -1,26 +1,85 @@
-<h2>Composer Packages</h2>
-<table class="table table-striped table-hover">
-    <tr>
-        <th>name</th>
-        <th>version</th>
-        <th>source reference</th>
-    </tr>
-
-    <f:for each="{packages}" as="package">
-        <f:render section="package" arguments="{package: package}"/>
-    </f:for>
-</table>
+<div class="card-container">
+    <div class="card card-size-large">
+        <div class="card-header">
+            <h3>Composer Packages</h3>
+        </div>
+        <div class="card-body">
+            <f:if condition="{packages}">
+                <f:then>
+                    <p class="text-muted">
+                        <strong>Total packages:</strong> <f:count subject="{packages}"/> installed
+                    </p>
+                    <div class="panel panel-default">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Package Name</th>
+                                    <th>Version</th>
+                                    <th>Source Reference</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <f:for each="{packages}" as="package">
+                                    <f:render section="package" arguments="{package: package}"/>
+                                </f:for>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3">
+                                        <f:count subject="{packages}"/> Packages
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </f:then>
+                <f:else>
+                    <div class="alert alert-warning">
+                        <strong>No packages found</strong>
+                        <p>No composer packages are available to display.</p>
+                    </div>
+                </f:else>
+            </f:if>
+        </div>
+    </div>
+</div>
 
 <f:section name="package">
     <tr>
-        <td>
-            {package.name}
+        <td class="nowrap">
+            <strong>{package.name}</strong>
+            <f:if condition="{package.description}">
+                <br>
+                <small class="text-muted">{package.description}</small>
+            </f:if>
         </td>
         <td>
-            {package.version}
+            <span class="label label-primary">{package.version}</span>
+            <f:if condition="{package.prettyVersion}">
+                <br>
+                <small class="text-muted">{package.prettyVersion}</small>
+            </f:if>
         </td>
         <td>
-            {package.sourceReference}
+            <f:if condition="{package.sourceReference}">
+                <f:then>
+                    <code>{package.sourceReference -> f:format.crop(maxCharacters: 12, respectWordBoundaries: 'false')}</code>
+                    <f:if condition="{package.sourceUrl}">
+                        <br>
+                        <small>
+                            <a href="{package.sourceUrl}" target="_blank" rel="noopener noreferrer">
+                                <f:if condition="{package.sourceType}">
+                                    <f:then>{package.sourceType}</f:then>
+                                    <f:else>Source</f:else>
+                                </f:if>
+                            </a>
+                        </small>
+                    </f:if>
+                </f:then>
+                <f:else>
+                    <em class="text-muted">N/A</em>
+                </f:else>
+            </f:if>
         </td>
     </tr>
 </f:section>
