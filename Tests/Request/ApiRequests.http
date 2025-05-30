@@ -1,0 +1,12 @@
+### GET request to reporter
+# curl -X GET "https://handlebars.ddev.site/api/reporter/v1/application/report"
+#     -H "x-api-identifier: 4a6f8b2e3d"
+#     -H "application-authorization: 7a5c9f2b-4d8e-1a3c-9e5f-2b4d8e1a3c82"
+#     -H "Content-Type: application/json"
+#     -d '{"data": "your request data"}'
+GET https://reporter.ddev.site/api/reporter/v1/application/report
+x-api-identifier: fe8f7ce5b07b3
+application-authorization: f5ddf812-0345-40b7-abe2-b053ea11d025
+Content-Type: application/json
+
+###

@@ -21,8 +21,8 @@
 	"typo3/cms-core": "^12.4 || ^13.4",
 	"typo3/cms-reports": "^12.4 || ^13.4",
 	"cpsit/auditor": "^1.0.0",
-	"cpsit/api-token": "1.0.0",
-	"dwenzel/reporter-api": "*"
+	"cpsit/api-token": "^1.0.0",
+	"dwenzel/reporter-api": "^1.0.0"
   },
   "require-dev": {
 	"armin/editorconfig-cli": "^2.0",
