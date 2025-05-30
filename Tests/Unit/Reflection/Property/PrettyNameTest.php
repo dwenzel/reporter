@@ -1,29 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DWenzel\Reporter\Tests\Unit\Reflection\Property;
 
 use DWenzel\Reporter\Reflection\Property\PrettyName;
 use DWenzel\Reporter\Reflection\Property\PropertyInterface;
 use DWenzel\Reporter\Tests\Unit\Fixtures\MockBundleDescriber;
-use Nimut\TestingFramework\TestCase\UnitTestCase;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-
-/***************************************************************
- *  Copyright notice
- *
- *  (c) 2019 Dirk Wenzel
- *  All rights reserved
- *
- * The GNU General Public License can be found at
- * http://www.gnu.org/copyleft/gpl.html.
- * A copy is found in the text file GPL.txt and important notices to the license
- * from the author is found in LICENSE.txt distributed with these scripts.
- * This script is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
 class PrettyNameTest extends UnitTestCase
 {
     /**
@@ -34,17 +19,23 @@ class PrettyNameTest extends UnitTestCase
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
+
+        // Initialize MockBundleDescriber test data
+        MockBundleDescriber::initializeProperties();
+
+        // Use MockBundleDescriber for testing
         $this->subject = new PrettyName(MockBundleDescriber::class);
     }
 
     /**
      * @test
      */
-    public function classImplementsPropertyInterface()
+    public function classImplementsPropertyInterface(): void
     {
-        $this->assertInstanceOf(
+        self::assertInstanceOf(
             PropertyInterface::class,
             $this->subject
         );
@@ -53,9 +44,9 @@ class PrettyNameTest extends UnitTestCase
     /**
      * @test
      */
-    public function getTypeReturnsTypeString()
+    public function getTypeReturnsTypeString(): void
     {
-        $this->assertSame(
+        self::assertSame(
             PropertyInterface::TYPE_STRING,
             $this->subject->getType()
         );
@@ -64,9 +55,9 @@ class PrettyNameTest extends UnitTestCase
     /**
      * @test
      */
-    public function getKeyReturnsClassConstantKey()
+    public function getKeyReturnsClassConstantKey(): void
     {
-        $this->assertSame(
+        self::assertSame(
             PrettyName::KEY,
             $this->subject->getKey()
         );
@@ -75,11 +66,11 @@ class PrettyNameTest extends UnitTestCase
     /**
      * @test
      */
-    public function getValueReturnsPrettyNameFromMockClass()
+    public function getValueReturnsPrettyNameFromMockClass(): void
     {
         $expectedPrettyName = 'dwenzel/foo-bundle';
 
-        $this->assertSame(
+        self::assertSame(
             $expectedPrettyName,
             $this->subject->getValue()
         );
@@ -88,12 +79,12 @@ class PrettyNameTest extends UnitTestCase
     /**
      * @test
      */
-    public function toJsonReturnsJsonRepresentationFromMockClass()
+    public function toJsonReturnsJsonRepresentationFromMockClass(): void
     {
         $prettyName = 'dwenzel/foo-bundle';
 
         $expectedJson = json_encode($prettyName);
-        $this->assertSame(
+        self::assertSame(
             $expectedJson,
             $this->subject->toJson()
         );
